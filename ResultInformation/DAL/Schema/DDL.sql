@@ -1,0 +1,102 @@
+CREATE TABLE Course
+(
+[Id] [int] IDENTITY(1,1) NOT NULL,
+[Name] NVARCHAR(500)  NOT NULL,
+Acro NVARCHAR(100)  NOT NULL,
+CreditHours INT  NOT NULL,
+LabCredits INT  NOT NULL DEFAULT 0,
+Code NVARCHAR(100)  NOT NULL,
+PRIMARY KEY (Id)
+)
+
+
+CREATE TABLE Session
+(
+[Id] [int] IDENTITY(1,1) NOT NULL,
+StartDate Date  NOT NULL,
+EndDate Date  NOT NULL,
+PRIMARY KEY (Id)
+)
+
+CREATE TABLE Registration
+(
+[Id] [int] IDENTITY(1,1) NOT NULL,
+CourseId INT , 
+SessionId INT ,
+StudentId INT ,
+PRIMARY KEY (Id)
+FOREIGN KEY (CourseId) REFERENCES Course(Id),
+FOREIGN KEY (SessionId) REFERENCES Session(Id),
+FOREIGN KEY (StudentId) REFERENCES Person(Id)
+)
+
+
+
+
+CREATE TABLE Person
+(
+[Id] [int] IDENTITY(1,1) NOT NULL,
+FirstName NVARCHAR(500)  NOT NULL,
+MiddleName NVARCHAR(500)  NOT NULL,
+LastName NVARCHAR(500)  NOT NULL,
+SystemId NVARCHAR(500) NULL,
+RollNo NVARCHAR(500)   NULL,
+ResistrationNo NVARCHAR(500)  NOT NULL,
+CNIC NVARCHAR(500)  NOT NULL,
+FatherId INT NULL,
+
+PRIMARY KEY (Id),
+FOREIGN KEY (FatherId) REFERENCES Person(Id)
+)
+
+
+
+CREATE TABLE Semester
+(
+[Id] [int] IDENTITY(1,1) NOT NULL,
+[Name] NVARCHAR(500)  NOT NULL,
+PRIMARY KEY (Id)
+)
+CREATE TABLE Shift
+(
+[Id] [int] IDENTITY(1,1) NOT NULL,
+[Name] NVARCHAR(500)  NOT NULL,
+PRIMARY KEY (Id)
+)
+CREATE TABLE Combination
+(
+[Id] [int] IDENTITY(1,1) NOT NULL,
+[Name] NVARCHAR(500)  NOT NULL,
+LevelId
+PRIMARY KEY (Id)
+)
+
+CREATE TABLE AcademicHistory
+(
+[Id] [int] IDENTITY(1,1) NOT NULL,
+StudentId
+CombinationId
+LevelId
+AwardingBodyId
+Percentage
+Institute
+PRIMARY KEY (Id)
+)
+
+CREATE TABLE AwardingBody
+(
+[Id] [int] IDENTITY(1,1) NOT NULL,
+[Name] NVARCHAR(500)  NOT NULL,
+PRIMARY KEY (Id)
+)
+
+CREATE TABLE Level
+(
+[Id] [int] IDENTITY(1,1) NOT NULL,
+[Name] NVARCHAR(500)  NOT NULL,
+PRIMARY KEY (Id)
+)
+
+
+
+
