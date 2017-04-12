@@ -17,7 +17,7 @@ namespace ResultInformation.Controllers
 
           //
 
-
+            //some test
            var persons= db.People.Find();
 
             
