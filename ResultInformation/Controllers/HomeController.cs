@@ -18,8 +18,8 @@ namespace ResultInformation.Controllers
           //
 
             //some test
-           var persons= db.People.Find();
-
+        //   var saria= db.People.Find(new Person(){FirstName="saria"});
+            //saria.Registrations.Add(new Registration(){})
             
             return View();
         }

@@ -14,8 +14,28 @@ namespace ResultInformation.DAL
     
     public partial class Person
     {
+        public Person()
+        {
+            this.AcademicHistories = new HashSet<AcademicHistory>();
+            this.Person1 = new HashSet<Person>();
+            this.Registrations = new HashSet<Registration>();
+        }
+    
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string MiddleName { get; set; }
+        public string SystemId { get; set; }
+        public string RollNo { get; set; }
+        public string ResistrationNo { get; set; }
+        public string CNIC { get; set; }
+        public Nullable<int> FatherId { get; set; }
+        public byte[] CreateDate { get; set; }
+        public Nullable<System.DateTime> EditDate { get; set; }
+    
+        public virtual ICollection<AcademicHistory> AcademicHistories { get; set; }
+        public virtual ICollection<Person> Person1 { get; set; }
+        public virtual Person Person2 { get; set; }
+        public virtual ICollection<Registration> Registrations { get; set; }
     }
 }

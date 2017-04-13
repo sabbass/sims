@@ -5,16 +5,316 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SIMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AcademicHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Percentage" Type="int" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
+          <Property Name="StudentId" Type="int" />
+          <Property Name="CombinationId" Type="int" />
+          <Property Name="AwardingBodyId" Type="int" />
+          <Property Name="InstituteId" Type="int" />
+          <Property Name="CreateDate" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="EditDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AcademicLevel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="CreateDate" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="EditDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AcademicSession">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
+          <Property Name="CreateDate" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="EditDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AwardingBody">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="CreateDate" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="EditDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Combination">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="AcademicLevelId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="EditDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Acro" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreditHours" Type="int" Nullable="false" />
+          <Property Name="LabCredits" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreateDate" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="EditDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Institute">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="CreateDate" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="EditDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="Person">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="500" />
-          <Property Name="LastName" Type="nchar" MaxLength="10" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="SystemId" Type="nvarchar" MaxLength="500" />
+          <Property Name="RollNo" Type="nvarchar" MaxLength="500" />
+          <Property Name="ResistrationNo" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="CNIC" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="FatherId" Type="int" />
+          <Property Name="CreateDate" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="EditDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseId" Type="int" />
+          <Property Name="SessionId" Type="int" />
+          <Property Name="ShiftId" Type="int" />
+          <Property Name="SemesterId" Type="int" />
+          <Property Name="StudentId" Type="int" />
+          <Property Name="CreateDate" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="EditDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Semester">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="CreateDate" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="EditDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Shift">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="CreateDate" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="EditDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__AcademicH__Award__71D1E811">
+          <End Role="AwardingBody" Type="Self.AwardingBody" Multiplicity="0..1" />
+          <End Role="AcademicHistory" Type="Self.AcademicHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AwardingBody">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicHistory">
+              <PropertyRef Name="AwardingBodyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicH__Combi__70DDC3D8">
+          <End Role="Combination" Type="Self.Combination" Multiplicity="0..1" />
+          <End Role="AcademicHistory" Type="Self.AcademicHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Combination">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicHistory">
+              <PropertyRef Name="CombinationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicH__Insti__72C60C4A">
+          <End Role="Institute" Type="Self.Institute" Multiplicity="0..1" />
+          <End Role="AcademicHistory" Type="Self.AcademicHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Institute">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicHistory">
+              <PropertyRef Name="InstituteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicH__Stude__6FE99F9F">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="AcademicHistory" Type="Self.AcademicHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicHistory">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Combinati__Acade__6B24EA82">
+          <End Role="AcademicLevel" Type="Self.AcademicLevel" Multiplicity="1" />
+          <End Role="Combination" Type="Self.Combination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicLevel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Combination">
+              <PropertyRef Name="AcademicLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Person__FatherId__4AB81AF0">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Person1" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Person1">
+              <PropertyRef Name="FatherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registrat__Cours__6383C8BA">
+          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registrat__Semes__66603565">
+          <End Role="Semester" Type="Self.Semester" Multiplicity="0..1" />
+          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="SemesterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registrat__Sessi__6477ECF3">
+          <End Role="AcademicSession" Type="Self.AcademicSession" Multiplicity="0..1" />
+          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicSession">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="SessionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registrat__Shift__656C112C">
+          <End Role="Shift" Type="Self.Shift" Multiplicity="0..1" />
+          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shift">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="ShiftId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registrat__Stude__6754599E">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="SIMSModelStoreContainer">
+          <EntitySet Name="AcademicHistory" EntityType="Self.AcademicHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AcademicLevel" EntityType="Self.AcademicLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AcademicSession" EntityType="Self.AcademicSession" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AwardingBody" EntityType="Self.AwardingBody" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Combination" EntityType="Self.Combination" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Institute" EntityType="Self.Institute" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Semester" EntityType="Self.Semester" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shift" EntityType="Self.Shift" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AcademicH__Award__71D1E811" Association="Self.FK__AcademicH__Award__71D1E811">
+            <End Role="AwardingBody" EntitySet="AwardingBody" />
+            <End Role="AcademicHistory" EntitySet="AcademicHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicH__Combi__70DDC3D8" Association="Self.FK__AcademicH__Combi__70DDC3D8">
+            <End Role="Combination" EntitySet="Combination" />
+            <End Role="AcademicHistory" EntitySet="AcademicHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicH__Insti__72C60C4A" Association="Self.FK__AcademicH__Insti__72C60C4A">
+            <End Role="Institute" EntitySet="Institute" />
+            <End Role="AcademicHistory" EntitySet="AcademicHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicH__Stude__6FE99F9F" Association="Self.FK__AcademicH__Stude__6FE99F9F">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="AcademicHistory" EntitySet="AcademicHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Combinati__Acade__6B24EA82" Association="Self.FK__Combinati__Acade__6B24EA82">
+            <End Role="AcademicLevel" EntitySet="AcademicLevel" />
+            <End Role="Combination" EntitySet="Combination" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Person__FatherId__4AB81AF0" Association="Self.FK__Person__FatherId__4AB81AF0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Person1" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registrat__Cours__6383C8BA" Association="Self.FK__Registrat__Cours__6383C8BA">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Registration" EntitySet="Registration" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registrat__Semes__66603565" Association="Self.FK__Registrat__Semes__66603565">
+            <End Role="Semester" EntitySet="Semester" />
+            <End Role="Registration" EntitySet="Registration" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registrat__Sessi__6477ECF3" Association="Self.FK__Registrat__Sessi__6477ECF3">
+            <End Role="AcademicSession" EntitySet="AcademicSession" />
+            <End Role="Registration" EntitySet="Registration" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registrat__Shift__656C112C" Association="Self.FK__Registrat__Shift__656C112C">
+            <End Role="Shift" EntitySet="Shift" />
+            <End Role="Registration" EntitySet="Registration" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registrat__Stude__6754599E" Association="Self.FK__Registrat__Stude__6754599E">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Registration" EntitySet="Registration" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -25,12 +325,334 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SystemId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="RollNo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ResistrationNo" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CNIC" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FatherId" Type="Int32" />
+          <Property Name="CreateDate" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="EditDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AcademicHistories" Relationship="SIMSModel.FK__AcademicH__Stude__6FE99F9F" FromRole="Person" ToRole="AcademicHistory" />
+          <NavigationProperty Name="Person1" Relationship="SIMSModel.FK__Person__FatherId__4AB81AF0" FromRole="Person" ToRole="Person1" />
+          <NavigationProperty Name="Person2" Relationship="SIMSModel.FK__Person__FatherId__4AB81AF0" FromRole="Person1" ToRole="Person" />
+          <NavigationProperty Name="Registrations" Relationship="SIMSModel.FK__Registrat__Stude__6754599E" FromRole="Person" ToRole="Registration" />
         </EntityType>
         <EntityContainer Name="SIMSEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="AcademicHistories" EntityType="SIMSModel.AcademicHistory" />
+          <EntitySet Name="AcademicLevels" EntityType="SIMSModel.AcademicLevel" />
+          <EntitySet Name="AcademicSessions" EntityType="SIMSModel.AcademicSession" />
+          <EntitySet Name="AwardingBodies" EntityType="SIMSModel.AwardingBody" />
+          <EntitySet Name="Combinations" EntityType="SIMSModel.Combination" />
+          <EntitySet Name="Courses" EntityType="SIMSModel.Course" />
+          <EntitySet Name="Institutes" EntityType="SIMSModel.Institute" />
+          <EntitySet Name="Registrations" EntityType="SIMSModel.Registration" />
+          <EntitySet Name="Semesters" EntityType="SIMSModel.Semester" />
+          <EntitySet Name="Shifts" EntityType="SIMSModel.Shift" />
+          <AssociationSet Name="FK__AcademicH__Award__71D1E811" Association="SIMSModel.FK__AcademicH__Award__71D1E811">
+            <End Role="AwardingBody" EntitySet="AwardingBodies" />
+            <End Role="AcademicHistory" EntitySet="AcademicHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicH__Combi__70DDC3D8" Association="SIMSModel.FK__AcademicH__Combi__70DDC3D8">
+            <End Role="Combination" EntitySet="Combinations" />
+            <End Role="AcademicHistory" EntitySet="AcademicHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicH__Insti__72C60C4A" Association="SIMSModel.FK__AcademicH__Insti__72C60C4A">
+            <End Role="Institute" EntitySet="Institutes" />
+            <End Role="AcademicHistory" EntitySet="AcademicHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicH__Stude__6FE99F9F" Association="SIMSModel.FK__AcademicH__Stude__6FE99F9F">
+            <End Role="Person" EntitySet="People" />
+            <End Role="AcademicHistory" EntitySet="AcademicHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Combinati__Acade__6B24EA82" Association="SIMSModel.FK__Combinati__Acade__6B24EA82">
+            <End Role="AcademicLevel" EntitySet="AcademicLevels" />
+            <End Role="Combination" EntitySet="Combinations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registrat__Sessi__6477ECF3" Association="SIMSModel.FK__Registrat__Sessi__6477ECF3">
+            <End Role="AcademicSession" EntitySet="AcademicSessions" />
+            <End Role="Registration" EntitySet="Registrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registrat__Cours__6383C8BA" Association="SIMSModel.FK__Registrat__Cours__6383C8BA">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Registration" EntitySet="Registrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Person__FatherId__4AB81AF0" Association="SIMSModel.FK__Person__FatherId__4AB81AF0">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Person1" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registrat__Stude__6754599E" Association="SIMSModel.FK__Registrat__Stude__6754599E">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Registration" EntitySet="Registrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registrat__Semes__66603565" Association="SIMSModel.FK__Registrat__Semes__66603565">
+            <End Role="Semester" EntitySet="Semesters" />
+            <End Role="Registration" EntitySet="Registrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registrat__Shift__656C112C" Association="SIMSModel.FK__Registrat__Shift__656C112C">
+            <End Role="Shift" EntitySet="Shifts" />
+            <End Role="Registration" EntitySet="Registrations" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="AcademicHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Percentage" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="StudentId" Type="Int32" />
+          <Property Name="CombinationId" Type="Int32" />
+          <Property Name="AwardingBodyId" Type="Int32" />
+          <Property Name="InstituteId" Type="Int32" />
+          <Property Name="CreateDate" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="EditDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AwardingBody" Relationship="SIMSModel.FK__AcademicH__Award__71D1E811" FromRole="AcademicHistory" ToRole="AwardingBody" />
+          <NavigationProperty Name="Combination" Relationship="SIMSModel.FK__AcademicH__Combi__70DDC3D8" FromRole="AcademicHistory" ToRole="Combination" />
+          <NavigationProperty Name="Institute" Relationship="SIMSModel.FK__AcademicH__Insti__72C60C4A" FromRole="AcademicHistory" ToRole="Institute" />
+          <NavigationProperty Name="Person" Relationship="SIMSModel.FK__AcademicH__Stude__6FE99F9F" FromRole="AcademicHistory" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="AcademicLevel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="EditDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Combinations" Relationship="SIMSModel.FK__Combinati__Acade__6B24EA82" FromRole="AcademicLevel" ToRole="Combination" />
+        </EntityType>
+        <EntityType Name="AcademicSession">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CreateDate" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="EditDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Registrations" Relationship="SIMSModel.FK__Registrat__Sessi__6477ECF3" FromRole="AcademicSession" ToRole="Registration" />
+        </EntityType>
+        <EntityType Name="AwardingBody">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="EditDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AcademicHistories" Relationship="SIMSModel.FK__AcademicH__Award__71D1E811" FromRole="AwardingBody" ToRole="AcademicHistory" />
+        </EntityType>
+        <EntityType Name="Combination">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AcademicLevelId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="EditDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AcademicHistories" Relationship="SIMSModel.FK__AcademicH__Combi__70DDC3D8" FromRole="Combination" ToRole="AcademicHistory" />
+          <NavigationProperty Name="AcademicLevel" Relationship="SIMSModel.FK__Combinati__Acade__6B24EA82" FromRole="Combination" ToRole="AcademicLevel" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Acro" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreditHours" Type="Int32" Nullable="false" />
+          <Property Name="LabCredits" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="EditDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Registrations" Relationship="SIMSModel.FK__Registrat__Cours__6383C8BA" FromRole="Course" ToRole="Registration" />
+        </EntityType>
+        <EntityType Name="Institute">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="EditDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AcademicHistories" Relationship="SIMSModel.FK__AcademicH__Insti__72C60C4A" FromRole="Institute" ToRole="AcademicHistory" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseId" Type="Int32" />
+          <Property Name="SessionId" Type="Int32" />
+          <Property Name="ShiftId" Type="Int32" />
+          <Property Name="SemesterId" Type="Int32" />
+          <Property Name="StudentId" Type="Int32" />
+          <Property Name="CreateDate" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="EditDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AcademicSession" Relationship="SIMSModel.FK__Registrat__Sessi__6477ECF3" FromRole="Registration" ToRole="AcademicSession" />
+          <NavigationProperty Name="Course" Relationship="SIMSModel.FK__Registrat__Cours__6383C8BA" FromRole="Registration" ToRole="Course" />
+          <NavigationProperty Name="Person" Relationship="SIMSModel.FK__Registrat__Stude__6754599E" FromRole="Registration" ToRole="Person" />
+          <NavigationProperty Name="Semester" Relationship="SIMSModel.FK__Registrat__Semes__66603565" FromRole="Registration" ToRole="Semester" />
+          <NavigationProperty Name="Shift" Relationship="SIMSModel.FK__Registrat__Shift__656C112C" FromRole="Registration" ToRole="Shift" />
+        </EntityType>
+        <EntityType Name="Semester">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="EditDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Registrations" Relationship="SIMSModel.FK__Registrat__Semes__66603565" FromRole="Semester" ToRole="Registration" />
+        </EntityType>
+        <EntityType Name="Shift">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="EditDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Registrations" Relationship="SIMSModel.FK__Registrat__Shift__656C112C" FromRole="Shift" ToRole="Registration" />
+        </EntityType>
+        <Association Name="FK__AcademicH__Award__71D1E811">
+          <End Type="SIMSModel.AwardingBody" Role="AwardingBody" Multiplicity="0..1" />
+          <End Type="SIMSModel.AcademicHistory" Role="AcademicHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AwardingBody">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicHistory">
+              <PropertyRef Name="AwardingBodyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicH__Combi__70DDC3D8">
+          <End Type="SIMSModel.Combination" Role="Combination" Multiplicity="0..1" />
+          <End Type="SIMSModel.AcademicHistory" Role="AcademicHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Combination">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicHistory">
+              <PropertyRef Name="CombinationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicH__Insti__72C60C4A">
+          <End Type="SIMSModel.Institute" Role="Institute" Multiplicity="0..1" />
+          <End Type="SIMSModel.AcademicHistory" Role="AcademicHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Institute">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicHistory">
+              <PropertyRef Name="InstituteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicH__Stude__6FE99F9F">
+          <End Type="SIMSModel.Person" Role="Person" Multiplicity="0..1" />
+          <End Type="SIMSModel.AcademicHistory" Role="AcademicHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicHistory">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Combinati__Acade__6B24EA82">
+          <End Type="SIMSModel.AcademicLevel" Role="AcademicLevel" Multiplicity="1" />
+          <End Type="SIMSModel.Combination" Role="Combination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicLevel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Combination">
+              <PropertyRef Name="AcademicLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registrat__Sessi__6477ECF3">
+          <End Type="SIMSModel.AcademicSession" Role="AcademicSession" Multiplicity="0..1" />
+          <End Type="SIMSModel.Registration" Role="Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicSession">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="SessionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registrat__Cours__6383C8BA">
+          <End Type="SIMSModel.Course" Role="Course" Multiplicity="0..1" />
+          <End Type="SIMSModel.Registration" Role="Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Person__FatherId__4AB81AF0">
+          <End Type="SIMSModel.Person" Role="Person" Multiplicity="0..1" />
+          <End Type="SIMSModel.Person" Role="Person1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Person1">
+              <PropertyRef Name="FatherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registrat__Stude__6754599E">
+          <End Type="SIMSModel.Person" Role="Person" Multiplicity="0..1" />
+          <End Type="SIMSModel.Registration" Role="Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registrat__Semes__66603565">
+          <End Type="SIMSModel.Semester" Role="Semester" Multiplicity="0..1" />
+          <End Type="SIMSModel.Registration" Role="Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="SemesterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registrat__Shift__656C112C">
+          <End Type="SIMSModel.Shift" Role="Shift" Multiplicity="0..1" />
+          <End Type="SIMSModel.Registration" Role="Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shift">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="ShiftId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -40,9 +662,133 @@
           <EntitySetMapping Name="People">
             <EntityTypeMapping TypeName="SIMSModel.Person">
               <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="FatherId" ColumnName="FatherId" />
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+                <ScalarProperty Name="ResistrationNo" ColumnName="ResistrationNo" />
+                <ScalarProperty Name="RollNo" ColumnName="RollNo" />
+                <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AcademicHistories">
+            <EntityTypeMapping TypeName="SIMSModel.AcademicHistory">
+              <MappingFragment StoreEntitySet="AcademicHistory">
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="InstituteId" ColumnName="InstituteId" />
+                <ScalarProperty Name="AwardingBodyId" ColumnName="AwardingBodyId" />
+                <ScalarProperty Name="CombinationId" ColumnName="CombinationId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AcademicLevels">
+            <EntityTypeMapping TypeName="SIMSModel.AcademicLevel">
+              <MappingFragment StoreEntitySet="AcademicLevel">
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AcademicSessions">
+            <EntityTypeMapping TypeName="SIMSModel.AcademicSession">
+              <MappingFragment StoreEntitySet="AcademicSession">
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AwardingBodies">
+            <EntityTypeMapping TypeName="SIMSModel.AwardingBody">
+              <MappingFragment StoreEntitySet="AwardingBody">
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Combinations">
+            <EntityTypeMapping TypeName="SIMSModel.Combination">
+              <MappingFragment StoreEntitySet="Combination">
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="AcademicLevelId" ColumnName="AcademicLevelId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="SIMSModel.Course">
+              <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="LabCredits" ColumnName="LabCredits" />
+                <ScalarProperty Name="CreditHours" ColumnName="CreditHours" />
+                <ScalarProperty Name="Acro" ColumnName="Acro" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Institutes">
+            <EntityTypeMapping TypeName="SIMSModel.Institute">
+              <MappingFragment StoreEntitySet="Institute">
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Registrations">
+            <EntityTypeMapping TypeName="SIMSModel.Registration">
+              <MappingFragment StoreEntitySet="Registration">
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
+                <ScalarProperty Name="ShiftId" ColumnName="ShiftId" />
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Semesters">
+            <EntityTypeMapping TypeName="SIMSModel.Semester">
+              <MappingFragment StoreEntitySet="Semester">
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shifts">
+            <EntityTypeMapping TypeName="SIMSModel.Shift">
+              <MappingFragment StoreEntitySet="Shift">
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

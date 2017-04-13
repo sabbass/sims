@@ -26,5 +26,15 @@ namespace ResultInformation.DAL
         }
     
         public virtual DbSet<Person> People { get; set; }
+        public virtual DbSet<AcademicHistory> AcademicHistories { get; set; }
+        public virtual DbSet<AcademicLevel> AcademicLevels { get; set; }
+        public virtual DbSet<AcademicSession> AcademicSessions { get; set; }
+        public virtual DbSet<AwardingBody> AwardingBodies { get; set; }
+        public virtual DbSet<Combination> Combinations { get; set; }
+        public virtual DbSet<Course> Courses { get; set; }
+        public virtual DbSet<Institute> Institutes { get; set; }
+        public virtual DbSet<Registration> Registrations { get; set; }
+        public virtual DbSet<Semester> Semesters { get; set; }
+        public virtual DbSet<Shift> Shifts { get; set; }
     }
 }
