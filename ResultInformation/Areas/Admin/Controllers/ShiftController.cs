@@ -1,5 +1,5 @@
 ﻿using ResultInformation.DAL;
-using ResultInformation.Models;
+using ResultInformation.Areas.Admin.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,12 +7,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ResultInformation.Controllers
+namespace ResultInformation.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Clerk")]
     public class ShiftController : Controller
     {
         private SimsEntities2 db = new SimsEntities2();
-        private ModelHelper<Models.ShiftModel, DAL.Shift> mapper = new ModelHelper<Models.ShiftModel, DAL.Shift>();
+        private ModelHelper<ResultInformation.Areas.Admin.Models.ShiftModel, DAL.Shift> mapper = new ModelHelper<ResultInformation.Areas.Admin.Models.ShiftModel, DAL.Shift>();
         //
         //
         // GET: /Shift/

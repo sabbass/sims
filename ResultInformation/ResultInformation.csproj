@@ -200,6 +200,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\AwardingBodyController.cs" />
     <Compile Include="Areas\Admin\Controllers\CourseController.cs" />
@@ -262,18 +263,18 @@
     <Compile Include="Dashboard.Master.designer.cs">
       <DependentUpon>Dashboard.Master</DependentUpon>
     </Compile>
-    <Compile Include="fonts\Models\InstituteModel.cs" />
-    <Compile Include="fonts\Models\SemesterModel.cs" />
-    <Compile Include="fonts\Models\StudentModel.cs" />
+    <Compile Include="Areas\Admin\Models\InstituteModel.cs" />
+    <Compile Include="Areas\Admin\Models\SemesterModel.cs" />
+    <Compile Include="Areas\Admin\Models\StudentModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="fonts\Models\AccountViewModels.cs" />
     <Compile Include="fonts\Models\IdentityModels.cs" />
     <Compile Include="fonts\Models\ModelHelper.cs" />
-    <Compile Include="fonts\Models\CourseModel.cs" />
-    <Compile Include="fonts\Models\AwardingBodyModel.cs" />
-    <Compile Include="fonts\Models\ShiftModel.cs" />
+    <Compile Include="Areas\Admin\Models\CourseModel.cs" />
+    <Compile Include="Areas\Admin\Models\AwardingBodyModel.cs" />
+    <Compile Include="Areas\Admin\Models\ShiftModel.cs" />
     <Compile Include="panel.aspx.cs">
       <DependentUpon>panel.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -319,6 +320,9 @@
     </Content>
     <Content Include="Dashboard.Master" />
     <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <None Include="Properties\PublishProfiles\RIPublishPro.pubxml" />
     <None Include="Images\Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\Scripts\jquery-1.10.2.js" />
@@ -385,9 +389,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Browsers\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\AwardingBody\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Views\Edit\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,5 @@
 ﻿using ResultInformation.DAL;
-using ResultInformation.Models;
+using ResultInformation.Areas.Admin.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,11 +7,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ResultInformation.Controllers
+namespace ResultInformation.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Clerk")]
     public class CourseController : Controller
     { private SimsEntities2 db = new SimsEntities2();
-        private ModelHelper<Models.CourseModel, DAL.Course> mapper = new ModelHelper<Models.CourseModel, DAL.Course>();
+        private ModelHelper<ResultInformation.Areas.Admin.Models.CourseModel, DAL.Course> mapper = new ModelHelper<ResultInformation.Areas.Admin.Models.CourseModel, DAL.Course>();
         
         //
         // GET: /Course/

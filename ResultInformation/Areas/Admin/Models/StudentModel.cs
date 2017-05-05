@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ResultInformation.Models
+namespace ResultInformation.Areas.Admin.Models
 {
     using System;
     using System.Collections.Generic;
