@@ -187,16 +187,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adminpanel.aspx.cs">
+      <DependentUpon>Adminpanel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Adminpanel.aspx.designer.cs">
+      <DependentUpon>Adminpanel.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Areas\curd\curdAreaRegistration.cs" />
-    <Compile Include="Areas\curd\Controllers\PersonController.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AwardingBodyController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="Areas\Admin\Controllers\InstituteController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ShiftController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StudentController.cs" />
     <Compile Include="DAL\AcademicHistory.cs">
       <DependentUpon>SimsModel.tt</DependentUpon>
     </Compile>
@@ -227,17 +237,6 @@
     <Compile Include="DAL\Shift.cs">
       <DependentUpon>SimsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="DAL\Person.cs">
-      <DependentUpon>SimsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelHelper.cs" />
-    <Compile Include="Models\PersonModel.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DAL\SimsModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -253,9 +252,40 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SimsModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Student.cs">
+      <DependentUpon>SimsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard.Master.cs">
+      <DependentUpon>Dashboard.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard.Master.designer.cs">
+      <DependentUpon>Dashboard.Master</DependentUpon>
+    </Compile>
+    <Compile Include="fonts\Models\InstituteModel.cs" />
+    <Compile Include="fonts\Models\SemesterModel.cs" />
+    <Compile Include="fonts\Models\StudentModel.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="fonts\Models\AccountViewModels.cs" />
+    <Compile Include="fonts\Models\IdentityModels.cs" />
+    <Compile Include="fonts\Models\ModelHelper.cs" />
+    <Compile Include="fonts\Models\CourseModel.cs" />
+    <Compile Include="fonts\Models\AwardingBodyModel.cs" />
+    <Compile Include="fonts\Models\ShiftModel.cs" />
+    <Compile Include="panel.aspx.cs">
+      <DependentUpon>panel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="panel.aspx.designer.cs">
+      <DependentUpon>panel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Adminpanel.aspx" />
     <Content Include="App_Data\SIMS.mdf" />
     <Content Include="App_Data\SIMS_log.ldf">
       <DependentUpon>SIMS.mdf</DependentUpon>
@@ -267,49 +297,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Areas\curd\Views\web.config" />
-    <Content Include="Areas\curd\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\curd\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\curd\Views\PersonCreate.cshtml" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="panel.aspx" />
+    <Content Include="Images\Scripts\bootstrap.js" />
+    <Content Include="Images\Scripts\bootstrap.min.js" />
     <EntityDeploy Include="DAL\SimsModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SimsModel.Designer.cs</LastGenOutput>
@@ -327,20 +317,86 @@
       <DependentUpon>SimsModel.edmx</DependentUpon>
       <LastGenOutput>SimsModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Views\Person\Edit.cshtml" />
-    <Content Include="Views\Person\Create.cshtml" />
-    <Content Include="Views\Person\Index.cshtml" />
-    <Content Include="Views\Person\Details.cshtml" />
+    <Content Include="Dashboard.Master" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <None Include="Properties\PublishProfiles\RIPublishPro.pubxml" />
+    <None Include="Images\Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Images\Scripts\jquery-1.10.2.js" />
+    <Content Include="Images\Scripts\jquery-1.10.2.min.js" />
+    <None Include="Images\Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Images\Scripts\jquery.validate.js" />
+    <Content Include="Images\Scripts\jquery.validate.min.js" />
+    <Content Include="Images\Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Images\Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Images\Scripts\modernizr-2.6.2.js" />
+    <Content Include="Images\Scripts\respond.js" />
+    <Content Include="Images\Scripts\respond.min.js" />
+    <Content Include="Images\Scripts\_references.js" />
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Images\Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Areas\Admin\Views\Institute\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Shift\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Shift\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Shift\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shift\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Course\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Course\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Course\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Course\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Institute\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Institute\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Institute\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Institute\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Student\Delete.cshtml" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\curd\Models\" />
+    <Folder Include="App_Browsers\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\AwardingBody\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Views\Edit\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>

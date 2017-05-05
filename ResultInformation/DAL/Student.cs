@@ -12,20 +12,28 @@ namespace ResultInformation.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Course
+    public partial class Student
     {
-        public Course()
+        public Student()
         {
+            this.AcademicHistories = new HashSet<AcademicHistory>();
             this.Registrations = new HashSet<Registration>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Acro { get; set; }
-        public int CreditHours { get; set; }
-        public decimal LabCredits { get; set; }
-        public string Code { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
+        public string SystemId { get; set; }
+        public string RollNo { get; set; }
+        public string ResistrationNo { get; set; }
+        public string CNIC { get; set; }
+        public string FatherFirstName { get; set; }
+        public string FatherMiddleName { get; set; }
+        public string FatherLastName { get; set; }
+        public string FatherCNIC { get; set; }
     
+        public virtual ICollection<AcademicHistory> AcademicHistories { get; set; }
         public virtual ICollection<Registration> Registrations { get; set; }
     }
 }

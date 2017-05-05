@@ -20,13 +20,11 @@ namespace ResultInformation.DAL
         public Nullable<int> ShiftId { get; set; }
         public Nullable<int> SemesterId { get; set; }
         public Nullable<int> StudentId { get; set; }
-        public byte[] CreateDate { get; set; }
-        public Nullable<System.DateTime> EditDate { get; set; }
     
         public virtual AcademicSession AcademicSession { get; set; }
         public virtual Course Course { get; set; }
-        public virtual Person Person { get; set; }
         public virtual Semester Semester { get; set; }
         public virtual Shift Shift { get; set; }
+        public virtual Student Student { get; set; }
     }
 }

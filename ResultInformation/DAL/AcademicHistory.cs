@@ -22,12 +22,10 @@ namespace ResultInformation.DAL
         public Nullable<int> CombinationId { get; set; }
         public Nullable<int> AwardingBodyId { get; set; }
         public Nullable<int> InstituteId { get; set; }
-        public byte[] CreateDate { get; set; }
-        public Nullable<System.DateTime> EditDate { get; set; }
     
         public virtual AwardingBody AwardingBody { get; set; }
         public virtual Combination Combination { get; set; }
         public virtual Institute Institute { get; set; }
-        public virtual Person Person { get; set; }
+        public virtual Student Student { get; set; }
     }
 }

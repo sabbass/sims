@@ -13,10 +13,10 @@ namespace ResultInformation.DAL
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SIMSEntities : DbContext
+    public partial class SimsEntities2 : DbContext
     {
-        public SIMSEntities()
-            : base("name=SIMSEntities")
+        public SimsEntities2()
+            : base("name=SimsEntities2")
         {
         }
     
@@ -25,7 +25,6 @@ namespace ResultInformation.DAL
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<AcademicHistory> AcademicHistories { get; set; }
         public virtual DbSet<AcademicLevel> AcademicLevels { get; set; }
         public virtual DbSet<AcademicSession> AcademicSessions { get; set; }
@@ -36,5 +35,6 @@ namespace ResultInformation.DAL
         public virtual DbSet<Registration> Registrations { get; set; }
         public virtual DbSet<Semester> Semesters { get; set; }
         public virtual DbSet<Shift> Shifts { get; set; }
+        public virtual DbSet<Student> Students { get; set; }
     }
 }

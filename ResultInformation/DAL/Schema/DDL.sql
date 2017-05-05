@@ -1,4 +1,4 @@
-CREATE TABLE Person
+CREATE TABLE Student
 (
 [Id] [int] IDENTITY(1,1) NOT NULL,
 FirstName NVARCHAR(500)  NOT NULL,
@@ -8,18 +8,21 @@ SystemId NVARCHAR(500) NULL,
 RollNo NVARCHAR(500)   NULL,
 ResistrationNo NVARCHAR(500)  NOT NULL,
 CNIC NVARCHAR(500)  NOT NULL,
-FatherId INT NULL,
-CreateDate TimeStamp,
+FatherFirstName NVARCHAR(500)  NOT NULL,
+FatherMiddleName NVARCHAR(500)  NOT NULL,
+FatherLastName NVARCHAR(500)  NOT NULL,
+FatherCNIC NVARCHAR(500)  NOT NULL,
+CreateDate DateTime default(GetDate()),
 EditDate   DateTime default(GetDate()),
 PRIMARY KEY (Id),
-FOREIGN KEY (FatherId) REFERENCES Person(Id)
+
 )
 
 CREATE TABLE AwardingBody
 (
 [Id] [int] IDENTITY(1,1) NOT NULL,
 [Name] NVARCHAR(500)  NOT NULL,
-CreateDate TimeStamp,
+CreateDate DateTime default(GetDate()),
 EditDate   DateTime default(GetDate()),
 PRIMARY KEY (Id)
 )
@@ -28,7 +31,7 @@ CREATE TABLE Institute
 (
 [Id] [int] IDENTITY(1,1) NOT NULL,
 [Name] NVARCHAR(500)  NOT NULL,
-CreateDate TimeStamp,
+CreateDate DateTime default(GetDate()),
 EditDate   DateTime default(GetDate()),
 PRIMARY KEY (Id)
 )
@@ -37,7 +40,7 @@ CREATE TABLE AcademicLevel
 (
 [Id] [int] IDENTITY(1,1) NOT NULL,
 [Name] NVARCHAR(500)  NOT NULL,
-CreateDate TimeStamp,
+CreateDate DateTime default(GetDate()),
 EditDate   DateTime default(GetDate()),
 PRIMARY KEY (Id)
 )
@@ -46,7 +49,7 @@ CREATE TABLE Semester
 (
 [Id] [int] IDENTITY(1,1) NOT NULL,
 [Name] NVARCHAR(500)  NOT NULL,
-CreateDate TimeStamp,
+CreateDate DateTime default(GetDate()),
 EditDate   DateTime default(GetDate()),
 PRIMARY KEY (Id)
 )
@@ -55,7 +58,7 @@ CREATE TABLE Shift
 (
 [Id] [int] IDENTITY(1,1) NOT NULL,
 [Name] NVARCHAR(500)  NOT NULL,
-CreateDate TimeStamp,
+CreateDate DateTime default(GetDate()),
 EditDate   DateTime default(GetDate()),
 PRIMARY KEY (Id)
 )
@@ -68,7 +71,7 @@ Acro NVARCHAR(100)  NOT NULL,
 CreditHours INT  NOT NULL,
 LabCredits  NUMERIC  NOT NULL DEFAULT 0,
 Code NVARCHAR(100)  NOT NULL,
-CreateDate TimeStamp,
+CreateDate DateTime default(GetDate()),
 EditDate   DateTime default(GetDate()),
 PRIMARY KEY (Id)
 )
@@ -79,7 +82,7 @@ CREATE TABLE AcademicSession
 [Id] [int] IDENTITY(1,1) NOT NULL,
 StartDate Date  NOT NULL,
 EndDate Date  NOT NULL,
-CreateDate TimeStamp,
+CreateDate DateTime default(GetDate()),
 EditDate   DateTime default(GetDate()),
 PRIMARY KEY (Id)
 )
@@ -92,7 +95,7 @@ SessionId INT ,
 ShiftId INT ,
 SemesterId INT ,
 StudentId INT ,
-CreateDate TimeStamp,
+CreateDate DateTime default(GetDate()),
 EditDate   DateTime default(GetDate()),
 PRIMARY KEY (Id),
 FOREIGN KEY (CourseId) REFERENCES Course(Id),
@@ -109,7 +112,7 @@ CREATE TABLE Combination
 [Id] [int] IDENTITY(1,1) NOT NULL,
 [Name] NVARCHAR(500)  NOT NULL,
 [AcademicLevelId] [int]  NOT NULL,
-CreateDate TimeStamp,
+CreateDate DateTime default(GetDate()),
 EditDate   DateTime default(GetDate()),
 PRIMARY KEY (Id),
 FOREIGN KEY (AcademicLevelId) REFERENCES AcademicLevel(Id)
@@ -125,7 +128,7 @@ StudentId Int,
 CombinationId int,
 AwardingBodyId int,
 InstituteId int,
-CreateDate TimeStamp,
+CreateDate DateTime default(GetDate()),
 EditDate   DateTime default(GetDate()),
 PRIMARY KEY (Id),
 FOREIGN KEY (StudentId) REFERENCES Person(Id),

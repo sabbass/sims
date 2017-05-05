@@ -22,8 +22,6 @@ namespace ResultInformation.DAL
         public int Id { get; set; }
         public System.DateTime StartDate { get; set; }
         public System.DateTime EndDate { get; set; }
-        public byte[] CreateDate { get; set; }
-        public Nullable<System.DateTime> EditDate { get; set; }
     
         public virtual ICollection<Registration> Registrations { get; set; }
     }

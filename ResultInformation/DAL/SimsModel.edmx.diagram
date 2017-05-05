@@ -4,29 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c41fea8bb6ec4e43ba54f0bdf4dccd87" Name="Diagram1">
-        <EntityTypeShape EntityType="SIMSModel.Person" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIMSModel.AcademicHistory" Width="1.5" PointX="9.875" PointY="3.125" />
-        <EntityTypeShape EntityType="SIMSModel.AcademicLevel" Width="1.5" PointX="5.375" PointY="6.875" />
-        <EntityTypeShape EntityType="SIMSModel.AcademicSession" Width="1.5" PointX="3.375" PointY="1.625" />
-        <EntityTypeShape EntityType="SIMSModel.AwardingBody" Width="1.5" PointX="7.625" PointY="13.375" />
-        <EntityTypeShape EntityType="SIMSModel.Combination" Width="1.5" PointX="7.625" PointY="6.625" />
-        <EntityTypeShape EntityType="SIMSModel.Course" Width="1.5" PointX="3.375" PointY="7.625" />
-        <EntityTypeShape EntityType="SIMSModel.Institute" Width="1.5" PointX="7.625" PointY="10.625" />
-        <EntityTypeShape EntityType="SIMSModel.Registration" Width="1.5" PointX="5.625" PointY="1.25" />
-        <EntityTypeShape EntityType="SIMSModel.Semester" Width="1.5" PointX="3.375" PointY="13.875" />
-        <EntityTypeShape EntityType="SIMSModel.Shift" Width="1.5" PointX="3.375" PointY="11.125" />
-        <AssociationConnector Association="SIMSModel.FK__AcademicH__Award__71D1E811" />
-        <AssociationConnector Association="SIMSModel.FK__AcademicH__Combi__70DDC3D8" />
-        <AssociationConnector Association="SIMSModel.FK__AcademicH__Insti__72C60C4A" />
-        <AssociationConnector Association="SIMSModel.FK__AcademicH__Stude__6FE99F9F" />
-        <AssociationConnector Association="SIMSModel.FK__Combinati__Acade__6B24EA82" />
-        <AssociationConnector Association="SIMSModel.FK__Registrat__Sessi__6477ECF3" />
-        <AssociationConnector Association="SIMSModel.FK__Registrat__Cours__6383C8BA" />
-        <AssociationConnector Association="SIMSModel.FK__Person__FatherId__4AB81AF0" />
-        <AssociationConnector Association="SIMSModel.FK__Registrat__Stude__6754599E" />
-        <AssociationConnector Association="SIMSModel.FK__Registrat__Semes__66603565" />
-        <AssociationConnector Association="SIMSModel.FK__Registrat__Shift__656C112C" />
+      <Diagram DiagramId="407a4842c21049cf8a0936f9ce27b28e" Name="Diagram1">
+        <EntityTypeShape EntityType="SimsModel.AcademicHistory" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SimsModel.AcademicLevel" Width="1.5" PointX="1.5" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SimsModel.AcademicSession" Width="1.5" PointX="3.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SimsModel.AwardingBody" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SimsModel.Combination" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SimsModel.Course" Width="1.5" PointX="3.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SimsModel.Institute" Width="1.5" PointX="0.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SimsModel.Registration" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SimsModel.Semester" Width="1.5" PointX="3.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SimsModel.Shift" Width="1.5" PointX="3.75" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SimsModel.Student" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <AssociationConnector Association="SimsModel.FK__AcademicH__Award__09A971A2" ManuallyRouted="false" />
+        <AssociationConnector Association="SimsModel.FK__AcademicH__Combi__08B54D69" ManuallyRouted="false" />
+        <AssociationConnector Association="SimsModel.FK__AcademicH__Insti__0A9D95DB" ManuallyRouted="false" />
+        <AssociationConnector Association="SimsModel.FK__AcademicH__Stude__07C12930" ManuallyRouted="false" />
+        <AssociationConnector Association="SimsModel.FK__Combinati__Acade__03F0984C" ManuallyRouted="false" />
+        <AssociationConnector Association="SimsModel.FK__Registrat__Sessi__7E37BEF6" ManuallyRouted="false" />
+        <AssociationConnector Association="SimsModel.FK__Registrat__Cours__7D439ABD" ManuallyRouted="false" />
+        <AssociationConnector Association="SimsModel.FK__Registrat__Semes__00200768" ManuallyRouted="false" />
+        <AssociationConnector Association="SimsModel.FK__Registrat__Shift__7F2BE32F" ManuallyRouted="false" />
+        <AssociationConnector Association="SimsModel.FK__Registrat__Stude__01142BA1" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

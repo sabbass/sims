@@ -11,7 +11,7 @@ namespace ResultInformation.Controllers
     {
         public ActionResult Index()
         {
-            var db = new SIMSEntities();
+            var db = new SimsEntities2();
             //db.People.Add(new Person() {FirstName="Anum",LastName="Abbas" });
             //db.SaveChanges();
 
