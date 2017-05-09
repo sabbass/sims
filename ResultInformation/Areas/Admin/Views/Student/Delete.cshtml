@@ -1,0 +1,113 @@
+﻿@model ResultInformation.Areas.Admin.Models.StudentModel
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>StudentModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MiddleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MiddleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SystemId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SystemId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RollNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RollNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResistrationNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResistrationNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CNIC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CNIC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FatherFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FatherFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FatherMiddleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FatherMiddleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FatherLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FatherLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FatherCNIC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FatherCNIC)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,94 @@
+﻿@model IEnumerable<ResultInformation.Areas.Admin.Models.StudentModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MiddleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SystemId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RollNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResistrationNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CNIC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FatherFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FatherMiddleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FatherLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FatherCNIC)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MiddleName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SystemId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RollNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResistrationNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CNIC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FatherFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FatherMiddleName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FatherLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FatherCNIC)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
