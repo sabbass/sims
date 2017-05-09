@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SimsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SimsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AcademicHistory">
           <Key>
             <PropertyRef Name="Id" />
@@ -32,6 +32,16 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StartDate" Type="date" Nullable="false" />
           <Property Name="EndDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Articles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Summary" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Contents" Type="ntext" Nullable="false" />
+          <Property Name="IsPublished" Type="bit" />
         </EntityType>
         <EntityType Name="AwardingBody">
           <Key>
@@ -232,6 +242,7 @@
           <EntitySet Name="AcademicHistory" EntityType="Self.AcademicHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AcademicLevel" EntityType="Self.AcademicLevel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AcademicSession" EntityType="Self.AcademicSession" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Articles" EntityType="Self.Articles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AwardingBody" EntityType="Self.AwardingBody" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Combination" EntityType="Self.Combination" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
@@ -281,8 +292,7 @@
             <End Role="Registration" EntitySet="Registration" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SimsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -529,7 +539,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SimsEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SimsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AcademicHistories" EntityType="Self.AcademicHistory" />
           <EntitySet Name="AcademicLevels" EntityType="Self.AcademicLevel" />
           <EntitySet Name="AcademicSessions" EntityType="Self.AcademicSession" />
@@ -581,13 +591,24 @@
             <End Role="Student" EntitySet="Students" />
             <End Role="Registration" EntitySet="Registrations" />
           </AssociationSet>
+          <EntitySet Name="Articles" EntityType="SimsModel.Article" />
         </EntityContainer>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Summary" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Contents" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsPublished" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SimsModelStoreContainer" CdmEntityContainer="SimsEntities2">
+        <EntityContainerMapping StorageEntityContainer="SimsModelStoreContainer" CdmEntityContainer="SimsEntities">
           <EntitySetMapping Name="AcademicHistories">
             <EntityTypeMapping TypeName="SimsModel.AcademicHistory">
               <MappingFragment StoreEntitySet="AcademicHistory">
@@ -699,6 +720,17 @@
                 <ScalarProperty Name="FatherMiddleName" ColumnName="FatherMiddleName" />
                 <ScalarProperty Name="FatherLastName" ColumnName="FatherLastName" />
                 <ScalarProperty Name="FatherCNIC" ColumnName="FatherCNIC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Articles">
+            <EntityTypeMapping TypeName="SimsModel.Article">
+              <MappingFragment StoreEntitySet="Articles">
+                <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+                <ScalarProperty Name="Contents" ColumnName="Contents" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

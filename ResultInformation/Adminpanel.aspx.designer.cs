@@ -11,7 +11,7 @@ namespace ResultInformation
 {
 
 
-    public partial class panel
+    public partial class Adminpanel
     {
 
         /// <summary>

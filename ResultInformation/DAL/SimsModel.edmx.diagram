@@ -4,9 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="407a4842c21049cf8a0936f9ce27b28e" Name="Diagram1">
+      <Diagram DiagramId="407a4842c21049cf8a0936f9ce27b28e" Name="Diagram1" ZoomLevel="82">
         <EntityTypeShape EntityType="SimsModel.AcademicHistory" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SimsModel.AcademicLevel" Width="1.5" PointX="1.5" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SimsModel.AcademicLevel" Width="1.5" PointX="0.625" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="SimsModel.AcademicSession" Width="1.5" PointX="3.75" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SimsModel.AwardingBody" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SimsModel.Combination" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
@@ -26,6 +26,7 @@
         <AssociationConnector Association="SimsModel.FK__Registrat__Semes__00200768" ManuallyRouted="false" />
         <AssociationConnector Association="SimsModel.FK__Registrat__Shift__7F2BE32F" ManuallyRouted="false" />
         <AssociationConnector Association="SimsModel.FK__Registrat__Stude__01142BA1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SimsModel.Article" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

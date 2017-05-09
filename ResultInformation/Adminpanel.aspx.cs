@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace ResultInformation
 {
-    public partial class panel : System.Web.UI.Page
+    public partial class Adminpanel : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

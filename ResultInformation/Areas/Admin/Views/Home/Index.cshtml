@@ -4,5 +4,13 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Admin Home</h2>
+<h2>Admin Panel</h2>
 
+<div>
+    <ul>
+        <li>@Html.ActionLink("Student", "Index", "Student")</li>
+        <li>@Html.ActionLink("Course", "Index", "Course")</li>
+        <li>@Html.ActionLink("Shift", "Index", "Shift")</li>
+
+    </ul>
+</div>

@@ -77,6 +77,13 @@ PRIMARY KEY (Id)
 )
 
 
+CREATE TABLE Articles
+(
+[Id] [int] IDENTITY(1,1) NOT NULL,
+[Name] NVARCHAR(500)  NOT NULL,
+[Summary] NVARCHAR(500)  NOT NULL,
+[Contents] NTEXT  NOT NULL
+}
 CREATE TABLE AcademicSession
 (
 [Id] [int] IDENTITY(1,1) NOT NULL,
@@ -139,6 +146,14 @@ FOREIGN KEY (InstituteId) REFERENCES Institute(Id),
 
 
 
-
+CREATE TABLE Articles
+(
+[Id] [int] IDENTITY(1,1) NOT NULL,
+[Name] NVARCHAR(500)  NOT NULL,
+[Summary] NVARCHAR(500)  NOT NULL,
+[Contents] NTEXT  NOT NULL,
+IsPublished  BIT   NULL   DEFAULT 0,
+PRIMARY KEY (Id)
+);
 
 

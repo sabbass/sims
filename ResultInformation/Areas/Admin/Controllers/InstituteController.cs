@@ -12,7 +12,7 @@ namespace ResultInformation.Areas.Admin.Controllers
     [Authorize(Roles = "Admin,Clerk")]
     public class InstituteController : Controller
     {
-        private SimsEntities2 db = new SimsEntities2();
+        private SimsEntities db = new SimsEntities();
         private ModelHelper<ResultInformation.Areas.Admin.Models.InstituteModel, DAL.Institute> mapper = new ModelHelper<ResultInformation.Areas.Admin.Models.InstituteModel, DAL.Institute>();
 
         //
@@ -52,7 +52,7 @@ namespace ResultInformation.Areas.Admin.Controllers
                 // TODO: Add insert logic here
 
                 var dbmodel = mapper.ToDb(model);
-              //  dbmodel.CreateDate = DateTime.Now;
+                //  dbmodel.CreateDate = DateTime.Now;
                 db.Institutes.Add(dbmodel);
                 db.SaveChanges();
 
@@ -82,7 +82,7 @@ namespace ResultInformation.Areas.Admin.Controllers
             {
 
                 var orignalInDb = Get(id);
-              //  orignalInDb.EditDate = DateTime.Now;
+                //  orignalInDb.EditDate = DateTime.Now;
                 var d = mapper.Patch(patch, orignalInDb);
                 db.Entry(orignalInDb).State = EntityState.Modified;
                 db.SaveChanges();
@@ -97,7 +97,7 @@ namespace ResultInformation.Areas.Admin.Controllers
         // GET: /Institute/Delete/5
         public ActionResult Delete(int id)
         {
-           try
+            try
             {
                 var p = Get(id);
                 db.Institutes.Remove(p);

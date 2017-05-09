@@ -13,10 +13,10 @@ namespace ResultInformation.DAL
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SimsEntities2 : DbContext
+    public partial class SimsEntities : DbContext
     {
-        public SimsEntities2()
-            : base("name=SimsEntities2")
+        public SimsEntities()
+            : base("name=SimsEntities")
         {
         }
     
@@ -36,5 +36,6 @@ namespace ResultInformation.DAL
         public virtual DbSet<Semester> Semesters { get; set; }
         public virtual DbSet<Shift> Shifts { get; set; }
         public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<Article> Articles { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace ResultInformation.Areas.Admin.Controllers
     [Authorize(Roles = "Admin,Clerk")]
     public class ShiftController : Controller
     {
-        private SimsEntities2 db = new SimsEntities2();
+        private SimsEntities db = new SimsEntities();
         private ModelHelper<ResultInformation.Areas.Admin.Models.ShiftModel, DAL.Shift> mapper = new ModelHelper<ResultInformation.Areas.Admin.Models.ShiftModel, DAL.Shift>();
         //
         //
@@ -83,7 +83,7 @@ namespace ResultInformation.Areas.Admin.Controllers
             {
 
                 var orignalInDb = Get(id);
-              //  orignalInDb.EditDate = DateTime.Now;
+                //  orignalInDb.EditDate = DateTime.Now;
                 var d = mapper.Patch(patch, orignalInDb);
                 db.Entry(orignalInDb).State = EntityState.Modified;
                 db.SaveChanges();

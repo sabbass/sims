@@ -12,7 +12,7 @@ namespace ResultInformation.Areas.Admin.Controllers
     [Authorize(Roles = "Admin,Clerk")]
     public class StudentController : Controller
     {
-        private SimsEntities2 db = new SimsEntities2();
+        private SimsEntities db = new SimsEntities();
         private ModelHelper<ResultInformation.Areas.Admin.Models.StudentModel, DAL.Student> mapper = new ModelHelper<ResultInformation.Areas.Admin.Models.StudentModel, DAL.Student>();
         //
         // GET: /Student/

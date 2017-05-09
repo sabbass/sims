@@ -1,18 +1,43 @@
-﻿@{
+﻿@model  ResultInformation.Models.HomeModel
+@{
     ViewBag.Title = "Home Page";
+     <link href="~/Styles/MyStyle.css" rel="stylesheet" type="text/css" />
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">.</p>
+    <img src="Images/numl_logo" alt="" />
+    <h4>Welcome To Computer Science Department</h4>
+    <p class="lead"></p>
 
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-          
-        </p>
+        <h2>
+            Please Choose your appropriate link
+        </h2><hr />
+        <a href='#' class='button'  >Admin Panel</a><hr/>
+            @Html.ActionLink("Please Click here if you are Admin", "Index", "Home", new { Area = "Admin" }, new { })
+        <hr /><a href='#' class='button' onclick="location.href = '@Url.Action("Create","Course")'">Course Registration</a><hr />
+      @Html.ActionLink("Course Registration", "Index", "Home", new { Area = "Course Registration" }, new { })
+        <hr /><a href='#' class='button'>Attendance</a><hr />
+      @Html.ActionLink("Attendance", "Index", "Home", new { Area = "Attendance" }, new { })
+        <hr/><hr /><a href='#' class='button'>Result</a><hr />
+@Html.ActionLink("Result", "Index", "Home", new { Area = "Attendance" }, new { })
+
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-md-4">
+        <hr>
+        <h2>Must Read Stuff</h2>
+
+        <ul>
+            @foreach (var item in Model.Articles)
+            {
+                @Html.ActionLink(item.Name, "Article", new { id = item.Id })
+            }
+        </ul>
     </div>
 </div>
