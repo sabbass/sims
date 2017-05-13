@@ -16,8 +16,8 @@ namespace ResultInformation.DAL
     {
         public Student()
         {
-            this.AcademicHistories = new HashSet<AcademicHistory>();
             this.Registrations = new HashSet<Registration>();
+            this.AcademicHistories = new HashSet<AcademicHistory>();
         }
     
         public int Id { get; set; }
@@ -33,7 +33,7 @@ namespace ResultInformation.DAL
         public string FatherLastName { get; set; }
         public string FatherCNIC { get; set; }
     
-        public virtual ICollection<AcademicHistory> AcademicHistories { get; set; }
         public virtual ICollection<Registration> Registrations { get; set; }
+        public virtual ICollection<AcademicHistory> AcademicHistories { get; set; }
     }
 }

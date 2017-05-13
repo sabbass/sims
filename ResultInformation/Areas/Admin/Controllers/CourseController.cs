@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ResultInformation.Models;
 
 namespace ResultInformation.Areas.Admin.Controllers
 {

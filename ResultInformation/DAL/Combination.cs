@@ -21,9 +21,7 @@ namespace ResultInformation.DAL
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public int AcademicLevelId { get; set; }
     
         public virtual ICollection<AcademicHistory> AcademicHistories { get; set; }
-        public virtual AcademicLevel AcademicLevel { get; set; }
     }
 }

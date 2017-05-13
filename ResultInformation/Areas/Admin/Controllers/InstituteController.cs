@@ -1,5 +1,6 @@
 ﻿using ResultInformation.DAL;
 using ResultInformation.Areas.Admin.Models;
+using ResultInformation.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

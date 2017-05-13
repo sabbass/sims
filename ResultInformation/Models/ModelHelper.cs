@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using AutoMapper;
-namespace ResultInformation.Areas.Admin.Models
+namespace ResultInformation.Models
 {
     public class ModelHelper<UiModel, DbModel>
     {

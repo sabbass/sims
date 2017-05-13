@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ResultInformation {
+namespace WebApplication1 {
     
     
-    public partial class Dashboard {
+    public partial class Site1 {
         
         /// <summary>
         /// head control.

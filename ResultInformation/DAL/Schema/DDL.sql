@@ -18,6 +18,8 @@ PRIMARY KEY (Id),
 
 )
 
+
+
 CREATE TABLE AwardingBody
 (
 [Id] [int] IDENTITY(1,1) NOT NULL,
@@ -83,7 +85,7 @@ CREATE TABLE Articles
 [Name] NVARCHAR(500)  NOT NULL,
 [Summary] NVARCHAR(500)  NOT NULL,
 [Contents] NTEXT  NOT NULL
-}
+)
 CREATE TABLE AcademicSession
 (
 [Id] [int] IDENTITY(1,1) NOT NULL,
@@ -118,11 +120,11 @@ CREATE TABLE Combination
 (
 [Id] [int] IDENTITY(1,1) NOT NULL,
 [Name] NVARCHAR(500)  NOT NULL,
-[AcademicLevelId] [int]  NOT NULL,
+--[AcademicLevelId] [int]  NOT NULL,
 CreateDate DateTime default(GetDate()),
 EditDate   DateTime default(GetDate()),
 PRIMARY KEY (Id),
-FOREIGN KEY (AcademicLevelId) REFERENCES AcademicLevel(Id)
+--FOREIGN KEY (AcademicLevelId) REFERENCES AcademicLevel(Id)
 )
 
 CREATE TABLE AcademicHistory
@@ -135,13 +137,15 @@ StudentId Int,
 CombinationId int,
 AwardingBodyId int,
 InstituteId int,
+AcademicLevelId int,
 CreateDate DateTime default(GetDate()),
 EditDate   DateTime default(GetDate()),
 PRIMARY KEY (Id),
-FOREIGN KEY (StudentId) REFERENCES Person(Id),
+FOREIGN KEY (StudentId) REFERENCES Student(Id),
 FOREIGN KEY (CombinationId) REFERENCES Combination(Id),
 FOREIGN KEY (AwardingBodyId) REFERENCES AwardingBody(Id),
 FOREIGN KEY (InstituteId) REFERENCES Institute(Id),
+FOREIGN KEY (AcademicLevelId) REFERENCES AcademicLevel(Id),
 )
 
 

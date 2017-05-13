@@ -17,6 +17,7 @@
           <Property Name="CombinationId" Type="int" />
           <Property Name="AwardingBodyId" Type="int" />
           <Property Name="InstituteId" Type="int" />
+          <Property Name="AcademicLevelId" Type="int" />
         </EntityType>
         <EntityType Name="AcademicLevel">
           <Key>
@@ -56,7 +57,6 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="AcademicLevelId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Course">
           <Key>
@@ -118,7 +118,19 @@
           <Property Name="FatherLastName" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="FatherCNIC" Type="nvarchar" MaxLength="500" Nullable="false" />
         </EntityType>
-        <Association Name="FK__AcademicH__Award__09A971A2">
+        <Association Name="FK__AcademicH__Acade__51300E55">
+          <End Role="AcademicLevel" Type="Self.AcademicLevel" Multiplicity="0..1" />
+          <End Role="AcademicHistory" Type="Self.AcademicHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicLevel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicHistory">
+              <PropertyRef Name="AcademicLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicH__Award__4F47C5E3">
           <End Role="AwardingBody" Type="Self.AwardingBody" Multiplicity="0..1" />
           <End Role="AcademicHistory" Type="Self.AcademicHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -130,7 +142,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__AcademicH__Combi__08B54D69">
+        <Association Name="FK__AcademicH__Combi__4E53A1AA">
           <End Role="Combination" Type="Self.Combination" Multiplicity="0..1" />
           <End Role="AcademicHistory" Type="Self.AcademicHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -142,7 +154,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__AcademicH__Insti__0A9D95DB">
+        <Association Name="FK__AcademicH__Insti__503BEA1C">
           <End Role="Institute" Type="Self.Institute" Multiplicity="0..1" />
           <End Role="AcademicHistory" Type="Self.AcademicHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -154,7 +166,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__AcademicH__Stude__07C12930">
+        <Association Name="FK__AcademicH__Stude__4D5F7D71">
           <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
           <End Role="AcademicHistory" Type="Self.AcademicHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -163,18 +175,6 @@
             </Principal>
             <Dependent Role="AcademicHistory">
               <PropertyRef Name="StudentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Combinati__Acade__03F0984C">
-          <End Role="AcademicLevel" Type="Self.AcademicLevel" Multiplicity="1" />
-          <End Role="Combination" Type="Self.Combination" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AcademicLevel">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Combination">
-              <PropertyRef Name="AcademicLevelId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -251,25 +251,25 @@
           <EntitySet Name="Semester" EntityType="Self.Semester" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shift" EntityType="Self.Shift" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__AcademicH__Award__09A971A2" Association="Self.FK__AcademicH__Award__09A971A2">
+          <AssociationSet Name="FK__AcademicH__Acade__51300E55" Association="Self.FK__AcademicH__Acade__51300E55">
+            <End Role="AcademicLevel" EntitySet="AcademicLevel" />
+            <End Role="AcademicHistory" EntitySet="AcademicHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicH__Award__4F47C5E3" Association="Self.FK__AcademicH__Award__4F47C5E3">
             <End Role="AwardingBody" EntitySet="AwardingBody" />
             <End Role="AcademicHistory" EntitySet="AcademicHistory" />
           </AssociationSet>
-          <AssociationSet Name="FK__AcademicH__Combi__08B54D69" Association="Self.FK__AcademicH__Combi__08B54D69">
+          <AssociationSet Name="FK__AcademicH__Combi__4E53A1AA" Association="Self.FK__AcademicH__Combi__4E53A1AA">
             <End Role="Combination" EntitySet="Combination" />
             <End Role="AcademicHistory" EntitySet="AcademicHistory" />
           </AssociationSet>
-          <AssociationSet Name="FK__AcademicH__Insti__0A9D95DB" Association="Self.FK__AcademicH__Insti__0A9D95DB">
+          <AssociationSet Name="FK__AcademicH__Insti__503BEA1C" Association="Self.FK__AcademicH__Insti__503BEA1C">
             <End Role="Institute" EntitySet="Institute" />
             <End Role="AcademicHistory" EntitySet="AcademicHistory" />
           </AssociationSet>
-          <AssociationSet Name="FK__AcademicH__Stude__07C12930" Association="Self.FK__AcademicH__Stude__07C12930">
+          <AssociationSet Name="FK__AcademicH__Stude__4D5F7D71" Association="Self.FK__AcademicH__Stude__4D5F7D71">
             <End Role="Student" EntitySet="Student" />
             <End Role="AcademicHistory" EntitySet="AcademicHistory" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Combinati__Acade__03F0984C" Association="Self.FK__Combinati__Acade__03F0984C">
-            <End Role="AcademicLevel" EntitySet="AcademicLevel" />
-            <End Role="Combination" EntitySet="Combination" />
           </AssociationSet>
           <AssociationSet Name="FK__Registrat__Cours__7D439ABD" Association="Self.FK__Registrat__Cours__7D439ABD">
             <End Role="Course" EntitySet="Course" />
@@ -296,30 +296,13 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SimsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="AcademicHistory">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Percentage" Type="Int32" />
-          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="StudentId" Type="Int32" />
-          <Property Name="CombinationId" Type="Int32" />
-          <Property Name="AwardingBodyId" Type="Int32" />
-          <Property Name="InstituteId" Type="Int32" />
-          <NavigationProperty Name="AwardingBody" Relationship="Self.FK__AcademicH__Award__09A971A2" FromRole="AcademicHistory" ToRole="AwardingBody" />
-          <NavigationProperty Name="Combination" Relationship="Self.FK__AcademicH__Combi__08B54D69" FromRole="AcademicHistory" ToRole="Combination" />
-          <NavigationProperty Name="Institute" Relationship="Self.FK__AcademicH__Insti__0A9D95DB" FromRole="AcademicHistory" ToRole="Institute" />
-          <NavigationProperty Name="Student" Relationship="Self.FK__AcademicH__Stude__07C12930" FromRole="AcademicHistory" ToRole="Student" />
-        </EntityType>
         <EntityType Name="AcademicLevel">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Combinations" Relationship="Self.FK__Combinati__Acade__03F0984C" FromRole="AcademicLevel" ToRole="Combination" />
+          <NavigationProperty Name="AcademicHistories" Relationship="SimsModel.FK__AcademicH__Acade__51300E55" FromRole="AcademicLevel" ToRole="AcademicHistory" />
         </EntityType>
         <EntityType Name="AcademicSession">
           <Key>
@@ -336,17 +319,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AcademicHistories" Relationship="Self.FK__AcademicH__Award__09A971A2" FromRole="AwardingBody" ToRole="AcademicHistory" />
-        </EntityType>
-        <EntityType Name="Combination">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AcademicLevelId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AcademicHistories" Relationship="Self.FK__AcademicH__Combi__08B54D69" FromRole="Combination" ToRole="AcademicHistory" />
-          <NavigationProperty Name="AcademicLevel" Relationship="Self.FK__Combinati__Acade__03F0984C" FromRole="Combination" ToRole="AcademicLevel" />
+          <NavigationProperty Name="AcademicHistories" Relationship="SimsModel.FK__AcademicH__Award__4F47C5E3" FromRole="AwardingBody" ToRole="AcademicHistory" />
         </EntityType>
         <EntityType Name="Course">
           <Key>
@@ -366,7 +339,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AcademicHistories" Relationship="Self.FK__AcademicH__Insti__0A9D95DB" FromRole="Institute" ToRole="AcademicHistory" />
+          <NavigationProperty Name="AcademicHistories" Relationship="SimsModel.FK__AcademicH__Insti__503BEA1C" FromRole="Institute" ToRole="AcademicHistory" />
         </EntityType>
         <EntityType Name="Registration">
           <Key>
@@ -416,69 +389,9 @@
           <Property Name="FatherMiddleName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FatherLastName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FatherCNIC" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AcademicHistories" Relationship="Self.FK__AcademicH__Stude__07C12930" FromRole="Student" ToRole="AcademicHistory" />
           <NavigationProperty Name="Registrations" Relationship="Self.FK__Registrat__Stude__01142BA1" FromRole="Student" ToRole="Registration" />
+          <NavigationProperty Name="AcademicHistories" Relationship="SimsModel.FK__AcademicH__Stude__4D5F7D71" FromRole="Student" ToRole="AcademicHistory" />
         </EntityType>
-        <Association Name="FK__AcademicH__Award__09A971A2">
-          <End Role="AwardingBody" Type="Self.AwardingBody" Multiplicity="0..1" />
-          <End Role="AcademicHistory" Type="Self.AcademicHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AwardingBody">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AcademicHistory">
-              <PropertyRef Name="AwardingBodyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__AcademicH__Combi__08B54D69">
-          <End Role="Combination" Type="Self.Combination" Multiplicity="0..1" />
-          <End Role="AcademicHistory" Type="Self.AcademicHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Combination">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AcademicHistory">
-              <PropertyRef Name="CombinationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__AcademicH__Insti__0A9D95DB">
-          <End Role="Institute" Type="Self.Institute" Multiplicity="0..1" />
-          <End Role="AcademicHistory" Type="Self.AcademicHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Institute">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AcademicHistory">
-              <PropertyRef Name="InstituteId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__AcademicH__Stude__07C12930">
-          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
-          <End Role="AcademicHistory" Type="Self.AcademicHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AcademicHistory">
-              <PropertyRef Name="StudentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Combinati__Acade__03F0984C">
-          <End Role="AcademicLevel" Type="Self.AcademicLevel" Multiplicity="1" />
-          <End Role="Combination" Type="Self.Combination" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AcademicLevel">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Combination">
-              <PropertyRef Name="AcademicLevelId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Registrat__Sessi__7E37BEF6">
           <End Role="AcademicSession" Type="Self.AcademicSession" Multiplicity="0..1" />
           <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
@@ -540,37 +453,15 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SimsEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AcademicHistories" EntityType="Self.AcademicHistory" />
           <EntitySet Name="AcademicLevels" EntityType="Self.AcademicLevel" />
           <EntitySet Name="AcademicSessions" EntityType="Self.AcademicSession" />
           <EntitySet Name="AwardingBodies" EntityType="Self.AwardingBody" />
-          <EntitySet Name="Combinations" EntityType="Self.Combination" />
           <EntitySet Name="Courses" EntityType="Self.Course" />
           <EntitySet Name="Institutes" EntityType="Self.Institute" />
           <EntitySet Name="Registrations" EntityType="Self.Registration" />
           <EntitySet Name="Semesters" EntityType="Self.Semester" />
           <EntitySet Name="Shifts" EntityType="Self.Shift" />
           <EntitySet Name="Students" EntityType="Self.Student" />
-          <AssociationSet Name="FK__AcademicH__Award__09A971A2" Association="Self.FK__AcademicH__Award__09A971A2">
-            <End Role="AwardingBody" EntitySet="AwardingBodies" />
-            <End Role="AcademicHistory" EntitySet="AcademicHistories" />
-          </AssociationSet>
-          <AssociationSet Name="FK__AcademicH__Combi__08B54D69" Association="Self.FK__AcademicH__Combi__08B54D69">
-            <End Role="Combination" EntitySet="Combinations" />
-            <End Role="AcademicHistory" EntitySet="AcademicHistories" />
-          </AssociationSet>
-          <AssociationSet Name="FK__AcademicH__Insti__0A9D95DB" Association="Self.FK__AcademicH__Insti__0A9D95DB">
-            <End Role="Institute" EntitySet="Institutes" />
-            <End Role="AcademicHistory" EntitySet="AcademicHistories" />
-          </AssociationSet>
-          <AssociationSet Name="FK__AcademicH__Stude__07C12930" Association="Self.FK__AcademicH__Stude__07C12930">
-            <End Role="Student" EntitySet="Students" />
-            <End Role="AcademicHistory" EntitySet="AcademicHistories" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Combinati__Acade__03F0984C" Association="Self.FK__Combinati__Acade__03F0984C">
-            <End Role="AcademicLevel" EntitySet="AcademicLevels" />
-            <End Role="Combination" EntitySet="Combinations" />
-          </AssociationSet>
           <AssociationSet Name="FK__Registrat__Sessi__7E37BEF6" Association="Self.FK__Registrat__Sessi__7E37BEF6">
             <End Role="AcademicSession" EntitySet="AcademicSessions" />
             <End Role="Registration" EntitySet="Registrations" />
@@ -592,6 +483,28 @@
             <End Role="Registration" EntitySet="Registrations" />
           </AssociationSet>
           <EntitySet Name="Articles" EntityType="SimsModel.Article" />
+          <EntitySet Name="Combinations" EntityType="SimsModel.Combination" />
+          <EntitySet Name="AcademicHistories" EntityType="SimsModel.AcademicHistory" />
+          <AssociationSet Name="FK__AcademicH__Acade__51300E55" Association="SimsModel.FK__AcademicH__Acade__51300E55">
+            <End Role="AcademicLevel" EntitySet="AcademicLevels" />
+            <End Role="AcademicHistory" EntitySet="AcademicHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicH__Award__4F47C5E3" Association="SimsModel.FK__AcademicH__Award__4F47C5E3">
+            <End Role="AwardingBody" EntitySet="AwardingBodies" />
+            <End Role="AcademicHistory" EntitySet="AcademicHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicH__Combi__4E53A1AA" Association="SimsModel.FK__AcademicH__Combi__4E53A1AA">
+            <End Role="Combination" EntitySet="Combinations" />
+            <End Role="AcademicHistory" EntitySet="AcademicHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicH__Insti__503BEA1C" Association="SimsModel.FK__AcademicH__Insti__503BEA1C">
+            <End Role="Institute" EntitySet="Institutes" />
+            <End Role="AcademicHistory" EntitySet="AcademicHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademicH__Stude__4D5F7D71" Association="SimsModel.FK__AcademicH__Stude__4D5F7D71">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="AcademicHistory" EntitySet="AcademicHistories" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Article">
           <Key>
@@ -603,26 +516,99 @@
           <Property Name="Contents" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsPublished" Type="Boolean" />
         </EntityType>
+        <EntityType Name="Combination">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AcademicHistories" Relationship="SimsModel.FK__AcademicH__Combi__4E53A1AA" FromRole="Combination" ToRole="AcademicHistory" />
+        </EntityType>
+        <EntityType Name="AcademicHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Percentage" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="StudentId" Type="Int32" />
+          <Property Name="CombinationId" Type="Int32" />
+          <Property Name="AwardingBodyId" Type="Int32" />
+          <Property Name="InstituteId" Type="Int32" />
+          <Property Name="AcademicLevelId" Type="Int32" />
+          <NavigationProperty Name="AcademicLevel" Relationship="SimsModel.FK__AcademicH__Acade__51300E55" FromRole="AcademicHistory" ToRole="AcademicLevel" />
+          <NavigationProperty Name="AwardingBody" Relationship="SimsModel.FK__AcademicH__Award__4F47C5E3" FromRole="AcademicHistory" ToRole="AwardingBody" />
+          <NavigationProperty Name="Combination" Relationship="SimsModel.FK__AcademicH__Combi__4E53A1AA" FromRole="AcademicHistory" ToRole="Combination" />
+          <NavigationProperty Name="Institute" Relationship="SimsModel.FK__AcademicH__Insti__503BEA1C" FromRole="AcademicHistory" ToRole="Institute" />
+          <NavigationProperty Name="Student" Relationship="SimsModel.FK__AcademicH__Stude__4D5F7D71" FromRole="AcademicHistory" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK__AcademicH__Acade__51300E55">
+          <End Type="SimsModel.AcademicLevel" Role="AcademicLevel" Multiplicity="0..1" />
+          <End Type="SimsModel.AcademicHistory" Role="AcademicHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicLevel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicHistory">
+              <PropertyRef Name="AcademicLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicH__Award__4F47C5E3">
+          <End Type="SimsModel.AwardingBody" Role="AwardingBody" Multiplicity="0..1" />
+          <End Type="SimsModel.AcademicHistory" Role="AcademicHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AwardingBody">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicHistory">
+              <PropertyRef Name="AwardingBodyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicH__Combi__4E53A1AA">
+          <End Type="SimsModel.Combination" Role="Combination" Multiplicity="0..1" />
+          <End Type="SimsModel.AcademicHistory" Role="AcademicHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Combination">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicHistory">
+              <PropertyRef Name="CombinationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicH__Insti__503BEA1C">
+          <End Type="SimsModel.Institute" Role="Institute" Multiplicity="0..1" />
+          <End Type="SimsModel.AcademicHistory" Role="AcademicHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Institute">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicHistory">
+              <PropertyRef Name="InstituteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademicH__Stude__4D5F7D71">
+          <End Type="SimsModel.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="SimsModel.AcademicHistory" Role="AcademicHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AcademicHistory">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SimsModelStoreContainer" CdmEntityContainer="SimsEntities">
-          <EntitySetMapping Name="AcademicHistories">
-            <EntityTypeMapping TypeName="SimsModel.AcademicHistory">
-              <MappingFragment StoreEntitySet="AcademicHistory">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-                <ScalarProperty Name="CombinationId" ColumnName="CombinationId" />
-                <ScalarProperty Name="AwardingBodyId" ColumnName="AwardingBodyId" />
-                <ScalarProperty Name="InstituteId" ColumnName="InstituteId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AcademicLevels">
             <EntityTypeMapping TypeName="SimsModel.AcademicLevel">
               <MappingFragment StoreEntitySet="AcademicLevel">
@@ -645,15 +631,6 @@
               <MappingFragment StoreEntitySet="AwardingBody">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Combinations">
-            <EntityTypeMapping TypeName="SimsModel.Combination">
-              <MappingFragment StoreEntitySet="Combination">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="AcademicLevelId" ColumnName="AcademicLevelId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -730,6 +707,29 @@
                 <ScalarProperty Name="Contents" ColumnName="Contents" />
                 <ScalarProperty Name="Summary" ColumnName="Summary" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Combinations">
+            <EntityTypeMapping TypeName="SimsModel.Combination">
+              <MappingFragment StoreEntitySet="Combination">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AcademicHistories">
+            <EntityTypeMapping TypeName="SimsModel.AcademicHistory">
+              <MappingFragment StoreEntitySet="AcademicHistory">
+                <ScalarProperty Name="AcademicLevelId" ColumnName="AcademicLevelId" />
+                <ScalarProperty Name="InstituteId" ColumnName="InstituteId" />
+                <ScalarProperty Name="AwardingBodyId" ColumnName="AwardingBodyId" />
+                <ScalarProperty Name="CombinationId" ColumnName="CombinationId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

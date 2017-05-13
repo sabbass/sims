@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Dashboard.master.cs" Inherits="ResultInformation.Dashboard" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="WebApplication1.Site1" %>
 
 <!DOCTYPE html>
 
@@ -9,9 +9,9 @@
     <link href="Css/bootstrap-grid.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-</head>
-<body style="background-color:white;">
-    <div style="margin-left:3%";>    <asp:Image ID="Image1" runat="server" ImageUrl="~/img/numllogo1.png" Width="500px"/>
+</head>  
+   <body style="background-color:white;">
+  <div style="margin-left:3%";>    <asp:Image ID="Image1" runat="server" ImageUrl="~/img/numllogo1.png" Width="500px"/>
        </div>
     <form id="form2" runat="server">
         <div style="height: 69px; width: 980px; margin-left:13%";>           

@@ -7,7 +7,7 @@ using System.Web.Mvc;
 namespace ResultInformation.Areas.Admin.Controllers
 {
     [Authorize(Roles = "Admin,Clerk")]
-    public class HomeController : Controller
+    public class HomeController :Controller
     {
         //
         // GET: /Admin/Home/

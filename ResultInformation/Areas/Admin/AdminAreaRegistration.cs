@@ -18,7 +18,7 @@ namespace ResultInformation.Areas.Admin
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
                 new {controller="Home", action = "Index", id = UrlParameter.Optional },
-                new string[] { "ResultInformation.Areas.Admin.Controllers" }
+                new string[] { typeof(ResultInformation.Areas.Admin.Controllers.HomeController).Namespace }
             );
         }
     }

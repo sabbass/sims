@@ -22,7 +22,9 @@ namespace ResultInformation.DAL
         public Nullable<int> CombinationId { get; set; }
         public Nullable<int> AwardingBodyId { get; set; }
         public Nullable<int> InstituteId { get; set; }
+        public Nullable<int> AcademicLevelId { get; set; }
     
+        public virtual AcademicLevel AcademicLevel { get; set; }
         public virtual AwardingBody AwardingBody { get; set; }
         public virtual Combination Combination { get; set; }
         public virtual Institute Institute { get; set; }

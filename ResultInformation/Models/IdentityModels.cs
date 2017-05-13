@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace ResultInformation.Areas.Admin.Models
+namespace ResultInformation.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
@@ -22,5 +22,13 @@ namespace ResultInformation.Areas.Admin.Models
         public System.Data.Entity.DbSet<ResultInformation.Areas.Admin.Models.AwardingBodyModel> ShiftModels { get; set; }
 
         public System.Data.Entity.DbSet<ResultInformation.Areas.Admin.Models.CourseModel> SemesterModels { get; set; }
+
+        public System.Data.Entity.DbSet<ResultInformation.Areas.Admin.Models.AcademicLevelModel> LevelModels { get; set; }
+
+        public System.Data.Entity.DbSet<ResultInformation.Areas.Admin.Models.AcademicSessionModel> AcademicSessionModels { get; set; }
+
+        public System.Data.Entity.DbSet<ResultInformation.Areas.Admin.Models.CombinationModel> CombinationModels { get; set; }
+
+        public System.Data.Entity.DbSet<ResultInformation.Areas.Admin.Models.AcademicHistoryModel> AcademicHistoryModels { get; set; }
     }
 }

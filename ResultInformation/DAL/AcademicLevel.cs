@@ -16,12 +16,12 @@ namespace ResultInformation.DAL
     {
         public AcademicLevel()
         {
-            this.Combinations = new HashSet<Combination>();
+            this.AcademicHistories = new HashSet<AcademicHistory>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
     
-        public virtual ICollection<Combination> Combinations { get; set; }
+        public virtual ICollection<AcademicHistory> AcademicHistories { get; set; }
     }
 }

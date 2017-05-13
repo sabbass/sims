@@ -1,5 +1,6 @@
-﻿using ResultInformation.DAL;
-using ResultInformation.Areas.Admin.Models;
+﻿using ResultInformation.Areas.Admin.Models;
+using ResultInformation.DAL;
+using ResultInformation.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,12 +15,11 @@ namespace ResultInformation.Areas.Admin.Controllers
     {
         private SimsEntities db = new SimsEntities();
         private ModelHelper<ResultInformation.Areas.Admin.Models.ShiftModel, DAL.Shift> mapper = new ModelHelper<ResultInformation.Areas.Admin.Models.ShiftModel, DAL.Shift>();
+
         //
-        //
-        // GET: /Shift/
+        // GET: /Admin/Shift/
         public ActionResult Index(int? pageId = 0)
         {
-
             var dbModelPage = db.Shifts.OrderByDescending(a => a.Id).Skip((pageId ?? 0) * 100).Take(100).ToList();
             var UiModelPage = dbModelPage.Select(dbmodel => mapper.ToUi(dbmodel));//.OrderByDescending(a=>a.Id);
 
@@ -27,7 +27,7 @@ namespace ResultInformation.Areas.Admin.Controllers
         }
 
         //
-        // GET: /Shift/Details/5
+        // GET: /Admin/Shift/Details/5
         public ActionResult Details(int id)
         {
             var p = Get(id);
@@ -36,24 +36,23 @@ namespace ResultInformation.Areas.Admin.Controllers
         }
 
         //
-        // GET: /Shift/Create
+        // GET: /Admin/Shift/Create
         public ActionResult Create()
         {
             return View();
         }
 
         //
-        // POST: /Shift/Create
+        // POST: /Admin/Shift/Create
         [HttpPost]
         public ActionResult Create(ShiftModel model)
         {
-
             try
             {
                 // TODO: Add insert logic here
 
                 var dbmodel = mapper.ToDb(model);
-                //dbmodel.CreateDate = DateTime.Now;
+                //  dbmodel.CreateDate = DateTime.Now;
                 db.Shifts.Add(dbmodel);
                 db.SaveChanges();
 
@@ -66,7 +65,7 @@ namespace ResultInformation.Areas.Admin.Controllers
         }
 
         //
-        // GET: /Shift/Edit/5
+        // GET: /Admin/Shift/Edit/5
         public ActionResult Edit(int id)
         {
             var p = Get(id);
@@ -75,7 +74,7 @@ namespace ResultInformation.Areas.Admin.Controllers
         }
 
         //
-        // POST: /Shift/Edit/5
+        // POST: /Admin/Shift/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, ShiftModel patch)
         {
@@ -96,7 +95,7 @@ namespace ResultInformation.Areas.Admin.Controllers
         }
 
         //
-        // GET: /Shift/Delete/5
+        // GET: /Admin/Shift/Delete/5
         public ActionResult Delete(int id)
         {
             try
@@ -113,7 +112,7 @@ namespace ResultInformation.Areas.Admin.Controllers
         }
 
         //
-        // POST: /Shift/Delete/5
+        // POST: /Admin/Shift/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

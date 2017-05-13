@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ResultInformation.Areas.Admin.Models
+namespace ResultInformation.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
