@@ -1,0 +1,106 @@
+﻿@model IEnumerable<ResultInformation.Areas.Admin.Models.AcademicHistoryModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Percentage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentId)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.CombinationId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AwardingBodyId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InstituteId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AcademicLevelId)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.AcademicLevel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AwardingBody)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Combination)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Institute)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Student)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Percentage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentId)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.CombinationId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AwardingBodyId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InstituteId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AcademicLevelId)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.AcademicLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AwardingBody)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Combination)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Institute)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Student)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
