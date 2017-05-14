@@ -32,5 +32,7 @@ namespace ResultInformation.Models
         public System.Data.Entity.DbSet<ResultInformation.Areas.Admin.Models.AcademicHistoryModel> AcademicHistoryModels { get; set; }
 
         public System.Data.Entity.DbSet<ResultInformation.Areas.Student.Models.StudentProfile> StudentProfiles { get; set; }
+
+        public System.Data.Entity.DbSet<ResultInformation.Areas.Student.Models.Course> Courses { get; set; }
     }
 }

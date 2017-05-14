@@ -29,6 +29,9 @@
         <AssociationConnector Association="SimsModel.FK__AcademicH__Stude__4D5F7D71" />
         <EntityTypeShape EntityType="SimsModel.Program" Width="1.5" PointX="7.375" PointY="0.75" />
         <AssociationConnector Association="SimsModel.FK_Student_Program" />
+        <EntityTypeShape EntityType="SimsModel.sysdiagram" Width="1.5" PointX="9.375" PointY="0.75" />
+        <AssociationConnector Association="SimsModel.FK_Course_Semester" />
+        <AssociationConnector Association="SimsModel.FK_Semester_Program" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -34,6 +34,7 @@ namespace ResultInformation.DAL
         public string FatherCNIC { get; set; }
         public string UserId { get; set; }
         public Nullable<int> ProgramId { get; set; }
+        public Nullable<int> SemesterId { get; set; }
     
         public virtual ICollection<Registration> Registrations { get; set; }
         public virtual ICollection<AcademicHistory> AcademicHistories { get; set; }

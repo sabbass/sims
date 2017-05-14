@@ -17,11 +17,15 @@ namespace ResultInformation.DAL
         public Semester()
         {
             this.Registrations = new HashSet<Registration>();
+            this.Courses = new HashSet<Course>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
+        public Nullable<int> ProgramId { get; set; }
     
         public virtual ICollection<Registration> Registrations { get; set; }
+        public virtual ICollection<Course> Courses { get; set; }
+        public virtual Program Program { get; set; }
     }
 }

@@ -12,18 +12,12 @@ namespace ResultInformation.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Program
+    public partial class sysdiagram
     {
-        public Program()
-        {
-            this.Students = new HashSet<Student>();
-            this.Semesters = new HashSet<Semester>();
-        }
-    
-        public int Id { get; set; }
-        public string Name { get; set; }
-    
-        public virtual ICollection<Student> Students { get; set; }
-        public virtual ICollection<Semester> Semesters { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

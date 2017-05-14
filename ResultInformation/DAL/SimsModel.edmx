@@ -68,6 +68,7 @@
           <Property Name="CreditHours" Type="int" Nullable="false" />
           <Property Name="LabCredits" Type="numeric" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Code" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SemesterId" Type="int" />
         </EntityType>
         <EntityType Name="Institute">
           <Key>
@@ -100,6 +101,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ProgramId" Type="int" />
         </EntityType>
         <EntityType Name="Shift">
           <Key>
@@ -126,6 +128,17 @@
           <Property Name="FatherMiddleName" Type="nvarchar" MaxLength="500" />
           <Property Name="FatherLastName" Type="nvarchar" MaxLength="500" />
           <Property Name="FatherCNIC" Type="nvarchar" MaxLength="500" />
+          <Property Name="SemesterId" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK__AcademicH__Acade__51300E55">
           <End Role="AcademicLevel" Type="Self.AcademicLevel" Multiplicity="0..1" />
@@ -247,6 +260,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Course_Semester">
+          <End Role="Semester" Type="Self.Semester" Multiplicity="0..1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="SemesterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Semester_Program">
+          <End Role="Program" Type="Self.Program" Multiplicity="0..1" />
+          <End Role="Semester" Type="Self.Semester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Program">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Semester">
+              <PropertyRef Name="ProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Student_Program">
           <End Role="Program" Type="Self.Program" Multiplicity="0..1" />
           <End Role="Student" Type="Self.Student" Multiplicity="*" />
@@ -273,6 +310,7 @@
           <EntitySet Name="Semester" EntityType="Self.Semester" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shift" EntityType="Self.Shift" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__AcademicH__Acade__51300E55" Association="Self.FK__AcademicH__Acade__51300E55">
             <End Role="AcademicLevel" EntitySet="AcademicLevel" />
             <End Role="AcademicHistory" EntitySet="AcademicHistory" />
@@ -312,6 +350,14 @@
           <AssociationSet Name="FK__Registrat__Stude__01142BA1" Association="Self.FK__Registrat__Stude__01142BA1">
             <End Role="Student" EntitySet="Student" />
             <End Role="Registration" EntitySet="Registration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_Semester" Association="Self.FK_Course_Semester">
+            <End Role="Semester" EntitySet="Semester" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Semester_Program" Association="Self.FK_Semester_Program">
+            <End Role="Program" EntitySet="Program" />
+            <End Role="Semester" EntitySet="Semester" />
           </AssociationSet>
           <AssociationSet Name="FK_Student_Program" Association="Self.FK_Student_Program">
             <End Role="Program" EntitySet="Program" />
@@ -358,6 +404,8 @@
           <Property Name="LabCredits" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Registrations" Relationship="Self.FK__Registrat__Cours__7D439ABD" FromRole="Course" ToRole="Registration" />
+          <Property Name="SemesterId" Type="Int32" />
+          <NavigationProperty Name="Semester" Relationship="SimsModel.FK_Course_Semester" FromRole="Course" ToRole="Semester" />
         </EntityType>
         <EntityType Name="Institute">
           <Key>
@@ -390,6 +438,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Registrations" Relationship="Self.FK__Registrat__Semes__00200768" FromRole="Semester" ToRole="Registration" />
+          <NavigationProperty Name="Courses" Relationship="SimsModel.FK_Course_Semester" FromRole="Semester" ToRole="Course" />
+          <Property Name="ProgramId" Type="Int32" />
+          <NavigationProperty Name="Program" Relationship="SimsModel.FK_Semester_Program" FromRole="Semester" ToRole="Program" />
         </EntityType>
         <EntityType Name="Shift">
           <Key>
@@ -420,6 +471,7 @@
           <Property Name="UserId" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Name="ProgramId" Type="Int32" />
           <NavigationProperty Name="Program" Relationship="SimsModel.FK_Student_Program" FromRole="Student" ToRole="Program" />
+          <Property Name="SemesterId" Type="Int32" />
         </EntityType>
         <Association Name="FK__Registrat__Sessi__7E37BEF6">
           <End Role="AcademicSession" Type="Self.AcademicSession" Multiplicity="0..1" />
@@ -539,6 +591,15 @@
             <End Role="Program" EntitySet="Programs" />
             <End Role="Student" EntitySet="Students" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="SimsModel.sysdiagram" />
+          <AssociationSet Name="FK_Course_Semester" Association="SimsModel.FK_Course_Semester">
+            <End Role="Semester" EntitySet="Semesters" />
+            <End Role="Course" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Semester_Program" Association="SimsModel.FK_Semester_Program">
+            <End Role="Program" EntitySet="Programs" />
+            <End Role="Semester" EntitySet="Semesters" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Article">
           <Key>
@@ -644,6 +705,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Students" Relationship="SimsModel.FK_Student_Program" FromRole="Program" ToRole="Student" />
+          <NavigationProperty Name="Semesters" Relationship="SimsModel.FK_Semester_Program" FromRole="Program" ToRole="Semester" />
         </EntityType>
         <Association Name="FK_Student_Program">
           <End Type="SimsModel.Program" Role="Program" Multiplicity="0..1" />
@@ -653,6 +715,40 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Student">
+              <PropertyRef Name="ProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Course_Semester">
+          <End Type="SimsModel.Semester" Role="Semester" Multiplicity="0..1" />
+          <End Type="SimsModel.Course" Role="Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semester">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="SemesterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Semester_Program">
+          <End Type="SimsModel.Program" Role="Program" Multiplicity="0..1" />
+          <End Type="SimsModel.Semester" Role="Semester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Program">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Semester">
               <PropertyRef Name="ProgramId" />
             </Dependent>
           </ReferentialConstraint>
@@ -691,6 +787,7 @@
           <EntitySetMapping Name="Courses">
             <EntityTypeMapping TypeName="SimsModel.Course">
               <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Acro" ColumnName="Acro" />
@@ -723,6 +820,7 @@
           <EntitySetMapping Name="Semesters">
             <EntityTypeMapping TypeName="SimsModel.Semester">
               <MappingFragment StoreEntitySet="Semester">
+                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
@@ -739,6 +837,7 @@
           <EntitySetMapping Name="Students">
             <EntityTypeMapping TypeName="SimsModel.Student">
               <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
                 <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -795,6 +894,17 @@
               <MappingFragment StoreEntitySet="Program">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SimsModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

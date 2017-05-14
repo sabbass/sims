@@ -209,8 +209,10 @@
     <Compile Include="Areas\Admin\Controllers\CourseController.cs" />
     <Compile Include="Areas\Admin\Controllers\InstituteController.cs" />
     <Compile Include="Areas\Admin\Controllers\StudentController.cs" />
+    <Compile Include="Areas\Student\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Student\Controllers\HomeController.cs" />
     <Compile Include="Areas\Student\Controllers\StudentSignUpController.cs" />
+    <Compile Include="Areas\Student\Models\Course.cs" />
     <Compile Include="Areas\Student\Models\StudentSignUp.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs">
@@ -273,6 +275,9 @@
     </Compile>
     <Compile Include="Areas\Admin\Models\InstituteModel.cs" />
     <Compile Include="Areas\Admin\Models\StudentModel.cs" />
+    <Compile Include="DAL\sysdiagram.cs">
+      <DependentUpon>SimsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard.Master.cs">
       <DependentUpon>Dashboard.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -406,6 +411,8 @@
     <Content Include="Areas\Student\Views\StudentSignUp\Create.cshtml" />
     <Content Include="Areas\Student\Views\StudentSignUp\Edit.cshtml" />
     <Content Include="Areas\Student\Views\StudentSignUp\Details.cshtml" />
+    <Content Include="Areas\Student\Views\Courses\Index.cshtml" />
+    <Content Include="Areas\Student\Views\StudentSignUp\Courses.cshtml" />
     <None Include="Properties\PublishProfiles\RIPublishPro.pubxml" />
     <None Include="Images\Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\Scripts\jquery-1.10.2.js" />

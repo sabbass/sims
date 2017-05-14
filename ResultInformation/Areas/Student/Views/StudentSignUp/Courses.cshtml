@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ResultInformation.Areas.Student.Models.Course>
+
+@{
+    ViewBag.Title = "Courses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Select Courses</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Selected)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+           
+            <input type="checkbox" name="Courses" value="@item.Id"
+                    @if(item.Selected) { 
+                       checked="checked" 
+                       } >
+             @item.Name
+        </td>
+
+    </tr>
+}
+
+</table>

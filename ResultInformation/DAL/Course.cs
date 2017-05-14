@@ -25,7 +25,9 @@ namespace ResultInformation.DAL
         public int CreditHours { get; set; }
         public decimal LabCredits { get; set; }
         public string Code { get; set; }
+        public Nullable<int> SemesterId { get; set; }
     
         public virtual ICollection<Registration> Registrations { get; set; }
+        public virtual Semester Semester { get; set; }
     }
 }
