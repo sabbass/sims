@@ -10,19 +10,29 @@ using System.Web.Mvc;
 
 namespace ResultInformation.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin,Clerk")]
+   // [Authorize(Roles = "Admin,Clerk")]
     public class StudentController : Controller
     {
         private SimsEntities db = new SimsEntities();
         private ModelHelper<ResultInformation.Areas.Admin.Models.StudentModel, DAL.Student> mapper = new ModelHelper<ResultInformation.Areas.Admin.Models.StudentModel, DAL.Student>();
-        //
+        
         // GET: /Student/
-        public ActionResult Index(int? pageId = 0)
+        public ActionResult Index(string SearchBy ,string Search)
         {
-            var dbModelPage = db.Students.OrderByDescending(a => a.Id).Skip((pageId ?? 0) * 100).Take(100).ToList();
-            var UiModelPage = dbModelPage.Select(dbmodel => mapper.ToUi(dbmodel));//.OrderByDescending(a=>a.Id);
+        ////    var dbModelPage = db.Students.OrderByDescending(a => a.Id).Skip((pageId ?? 0) * 100).Take(100).ToList();
+        ////    var UiModelPage = dbModelPage.Select(dbmodel => mapper.ToUi(dbmodel));//.OrderByDescending(a=>a.Id);
 
-            return View(UiModelPage);
+        ////    return View(UiModelPage);
+    
+        
+            if(SearchBy=="FirstName")
+            {
+                return View(db.Students.Where(x => x.FirstName.StartsWith(Search) || Search == null).ToList());
+            }
+            else
+            {
+                return View(db.Students.Where(x => x.ResistrationNo == Search || Search == null).ToList());
+            }
         }
 
         //
@@ -127,7 +137,7 @@ namespace ResultInformation.Areas.Admin.Controllers
                 return View();
             }
         }
-        public Student Get(int key)
+        public DAL.Student Get(int key)
         {
             // person => person.Id == key || (Person person) => {return person.Id == key}
             return db.Students.Where(person => person.Id == key).FirstOrDefault();

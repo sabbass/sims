@@ -37,5 +37,6 @@ namespace ResultInformation.DAL
         public virtual DbSet<Article> Articles { get; set; }
         public virtual DbSet<Combination> Combinations { get; set; }
         public virtual DbSet<AcademicHistory> AcademicHistories { get; set; }
+        public virtual DbSet<Program> Programs { get; set; }
     }
 }

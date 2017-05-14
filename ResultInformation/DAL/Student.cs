@@ -32,8 +32,11 @@ namespace ResultInformation.DAL
         public string FatherMiddleName { get; set; }
         public string FatherLastName { get; set; }
         public string FatherCNIC { get; set; }
+        public string UserId { get; set; }
+        public Nullable<int> ProgramId { get; set; }
     
         public virtual ICollection<Registration> Registrations { get; set; }
         public virtual ICollection<AcademicHistory> AcademicHistories { get; set; }
+        public virtual Program Program { get; set; }
     }
 }

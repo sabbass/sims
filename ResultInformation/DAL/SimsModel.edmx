@@ -76,6 +76,13 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
         </EntityType>
+        <EntityType Name="Program">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
         <EntityType Name="Registration">
           <Key>
             <PropertyRef Name="Id" />
@@ -106,6 +113,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nchar" MaxLength="100" />
+          <Property Name="ProgramId" Type="int" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="MiddleName" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="500" Nullable="false" />
@@ -113,10 +122,10 @@
           <Property Name="RollNo" Type="nvarchar" MaxLength="500" />
           <Property Name="ResistrationNo" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="CNIC" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="FatherFirstName" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="FatherMiddleName" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="FatherLastName" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="FatherCNIC" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="FatherFirstName" Type="nvarchar" MaxLength="500" />
+          <Property Name="FatherMiddleName" Type="nvarchar" MaxLength="500" />
+          <Property Name="FatherLastName" Type="nvarchar" MaxLength="500" />
+          <Property Name="FatherCNIC" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <Association Name="FK__AcademicH__Acade__51300E55">
           <End Role="AcademicLevel" Type="Self.AcademicLevel" Multiplicity="0..1" />
@@ -238,6 +247,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Student_Program">
+          <End Role="Program" Type="Self.Program" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Program">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="ProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="SimsModelStoreContainer">
           <EntitySet Name="AcademicHistory" EntityType="Self.AcademicHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AcademicLevel" EntityType="Self.AcademicLevel" Schema="dbo" store:Type="Tables" />
@@ -247,6 +268,7 @@
           <EntitySet Name="Combination" EntityType="Self.Combination" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Institute" EntityType="Self.Institute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Program" EntityType="Self.Program" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Semester" EntityType="Self.Semester" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shift" EntityType="Self.Shift" Schema="dbo" store:Type="Tables" />
@@ -290,6 +312,10 @@
           <AssociationSet Name="FK__Registrat__Stude__01142BA1" Association="Self.FK__Registrat__Stude__01142BA1">
             <End Role="Student" EntitySet="Student" />
             <End Role="Registration" EntitySet="Registration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Program" Association="Self.FK_Student_Program">
+            <End Role="Program" EntitySet="Program" />
+            <End Role="Student" EntitySet="Student" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -385,12 +411,15 @@
           <Property Name="RollNo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ResistrationNo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CNIC" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FatherFirstName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FatherMiddleName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FatherLastName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FatherCNIC" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FatherFirstName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FatherMiddleName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FatherLastName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FatherCNIC" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Registrations" Relationship="Self.FK__Registrat__Stude__01142BA1" FromRole="Student" ToRole="Registration" />
           <NavigationProperty Name="AcademicHistories" Relationship="SimsModel.FK__AcademicH__Stude__4D5F7D71" FromRole="Student" ToRole="AcademicHistory" />
+          <Property Name="UserId" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="ProgramId" Type="Int32" />
+          <NavigationProperty Name="Program" Relationship="SimsModel.FK_Student_Program" FromRole="Student" ToRole="Program" />
         </EntityType>
         <Association Name="FK__Registrat__Sessi__7E37BEF6">
           <End Role="AcademicSession" Type="Self.AcademicSession" Multiplicity="0..1" />
@@ -505,6 +534,11 @@
             <End Role="Student" EntitySet="Students" />
             <End Role="AcademicHistory" EntitySet="AcademicHistories" />
           </AssociationSet>
+          <EntitySet Name="Programs" EntityType="SimsModel.Program" />
+          <AssociationSet Name="FK_Student_Program" Association="SimsModel.FK_Student_Program">
+            <End Role="Program" EntitySet="Programs" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Article">
           <Key>
@@ -603,6 +637,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Program">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Students" Relationship="SimsModel.FK_Student_Program" FromRole="Program" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK_Student_Program">
+          <End Type="SimsModel.Program" Role="Program" Multiplicity="0..1" />
+          <End Type="SimsModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Program">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="ProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -685,6 +739,8 @@
           <EntitySetMapping Name="Students">
             <EntityTypeMapping TypeName="SimsModel.Student">
               <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
@@ -730,6 +786,14 @@
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Programs">
+            <EntityTypeMapping TypeName="SimsModel.Program">
+              <MappingFragment StoreEntitySet="Program">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

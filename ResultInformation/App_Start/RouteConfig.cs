@@ -12,6 +12,7 @@ namespace ResultInformation
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            //routes.MapRoute("test", "saria", new { controller = "Home", action = "Index" }, @namespaces: new string[] { "ResultInformation.Controllers" });
 
             routes.MapRoute(
                 name: "Default",

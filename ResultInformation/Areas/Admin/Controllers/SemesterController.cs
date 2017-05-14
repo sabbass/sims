@@ -23,6 +23,7 @@ namespace ResultInformation.Areas.Admin.Controllers
             var UiModelPage = dbModelPage.Select(dbmodel => mapper.ToUi(dbmodel));//.OrderByDescending(a=>a.Id);
 
             return View(UiModelPage);
+            
         }
 
         //

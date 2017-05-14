@@ -209,6 +209,10 @@
     <Compile Include="Areas\Admin\Controllers\CourseController.cs" />
     <Compile Include="Areas\Admin\Controllers\InstituteController.cs" />
     <Compile Include="Areas\Admin\Controllers\StudentController.cs" />
+    <Compile Include="Areas\Student\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Student\Controllers\StudentSignUpController.cs" />
+    <Compile Include="Areas\Student\Models\StudentSignUp.cs" />
+    <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -235,6 +239,9 @@
       <DependentUpon>SimsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\Institute.cs">
+      <DependentUpon>SimsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Program.cs">
       <DependentUpon>SimsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\Registration.cs">
@@ -280,7 +287,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\HomeModel.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IdentityModels.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\ModelHelper.cs" />
     <Compile Include="Areas\Admin\Models\CourseModel.cs" />
     <Compile Include="Areas\Admin\Models\AwardingBodyModel.cs" />
@@ -335,6 +344,7 @@
     <Content Include="Images\s.jpg" />
     <Content Include="Images\Scripts\bootstrap.js" />
     <Content Include="Images\Scripts\bootstrap.min.js" />
+    <Content Include="img\fyp.jpg" />
     <Content Include="WebApplication2.csproj" />
     <EntityDeploy Include="DAL\SimsModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -388,6 +398,14 @@
     <Content Include="Content\Css\bootstrap-4.0.0-alpha.6-dist.zip" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Dashboard.Master" />
+    <Content Include="Areas\Admin\Views\Semester\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Semester\Edit.cshtml" />
+    <Content Include="Areas\Student\Views\web.config" />
+    <Content Include="Areas\Student\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Student\Views\Home\StudentSignUp.cshtml" />
+    <Content Include="Areas\Student\Views\StudentSignUp\Create.cshtml" />
+    <Content Include="Areas\Student\Views\StudentSignUp\Edit.cshtml" />
+    <Content Include="Areas\Student\Views\StudentSignUp\Details.cshtml" />
     <None Include="Properties\PublishProfiles\RIPublishPro.pubxml" />
     <None Include="Images\Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\Scripts\jquery-1.10.2.js" />
@@ -467,12 +485,11 @@
     <Content Include="Views\Home\ShowArticle.cshtml">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Views\View1.cshtml" />
     <Content Include="Site1.Master" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Browsers\" />
-    <Folder Include="Areas\Admin\Views\Semester\" />
+    <Folder Include="Areas\Student\Views\Shared\" />
     <Folder Include="Views\Edit\" />
   </ItemGroup>
   <ItemGroup>

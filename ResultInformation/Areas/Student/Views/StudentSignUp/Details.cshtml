@@ -1,0 +1,123 @@
+﻿@model ResultInformation.Areas.Student.Models.StudentProfile
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>StudentProfile</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MiddleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MiddleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SystemId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SystemId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RollNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RollNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResistrationNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResistrationNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CNIC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CNIC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FatherFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FatherFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FatherMiddleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FatherMiddleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FatherLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FatherLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FatherCNIC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FatherCNIC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProgramId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProgramId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -3,28 +3,63 @@
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<br />
+<br /><br/><br/><br/>
 
 
-<div class="row">
-    <div class="col-md-2">
-        <h2>
+    <div class="row">
+        <div class="col-md-3">
+
+        <h4>
             Welcome To Computer Science Department
-        </h2>
+
+</h4>
+    
+    </div>
+        
+</div>
+<br /><br /><br /><br />
+<div class="row">
+    <div class="col-md-3">
+        <a href="~/Admin/Home/index" class="btn btn-primary btn-lg btn-block btn-huge">
+            <img src="~/img/reg.png" />
+              <br />Admin Panel</a>
+    </div>
+    <div class="col-md-3">
+        <a href="~/Student/Home" class="btn btn-primary btn-lg btn-block btn-huge"><img src="~/img/admin.png" /><br/>Course Registration</a>
+    </div>
+    <div class="col-md-3">
+        <a href="#" id="saria" class="btn btn-primary btn-lg btn-block btn-huge"><img src="~/Images/download.png" />@*<br/>Attendance*@</a>
     </div>
 </div>
 <div class="row">
-    <div class="col-md-3">
-        <a href="~/Admin/Home/index" class="btn btn-primary btn-lg btn-block btn-huge">Admin Panel</a>
+    <div class=" col-md-3">
+        <a href="~/Admin/Home/index" class="btn btn-primary btn-lg btn-block btn-huge">
+
+            <img src="~/Images/result.png" /> <br />Result
+        </a>
     </div>
     <div class="col-md-3">
-        <a href="#" class="btn btn-primary btn-lg btn-block btn-huge">Test button</a>
+        <a href="~/Home/Article/2" class="btn btn-primary btn-lg btn-block btn-huge">
+
+            <img src="~/img/images3.png" />
+            <br />Fyp Status
+        </a>
     </div>
     <div class="col-md-3">
-        <a href="#" class="btn btn-primary btn-lg btn-block btn-huge">Test button</a>
+        <a href="~/Home/Article/1" id="sa" class="btn btn-primary btn-lg btn-block btn-huge">
+            <img src="~/Images/admin.png" /><br />Examination Rules
+        </a>
     </div>
 </div>
-<div class="row">
+<script>
+
+    $('#sa').on('click', function () { $('#sa').load('/Home/showArticle') });
+</script>
+<div id="xyz" class="row">
+
+
+</div>
+@*<div class="row">
     <div class="card">
         <img src="~/img/download.jpg" />
     </div><div class="card">
@@ -32,8 +67,8 @@
     </div><div class="card">
         <img src="~/img/adminpanel.png" />
     </div>
-</div>
-<div class="row">
+</div>*@
+@*<div class="row">
     <div class="card">
         @Html.ActionLink("Please Click here if you are Admin", "Index", "Home", new { Area = "Admin" }, new { })
     </div> <div class="card">
@@ -48,7 +83,7 @@
         <a href='#' class='button'>Result</a><hr />
         @Html.ActionLink("Result", "Index", "Home", new { Area = "Attendance" }, new { })
     </div>
-</div>
+</div>*@
 
 @*<div class="row">
 

@@ -11,6 +11,7 @@ namespace ResultInformation.Areas.Admin.Models
 {
     using System;
     using System.Collections.Generic;
+
     using System.Web.Http;
     using System.Web.Http.OData;
 

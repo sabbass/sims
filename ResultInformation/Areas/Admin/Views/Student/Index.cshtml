@@ -10,6 +10,12 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<p>@using (Html.BeginForm( "Index" ,"Student", FormMethod.Get)) { 
+    <b> Search By:</b> @Html.RadioButton("SearchBy","FirstName" ,true) <text>Name</text>
+    @Html.RadioButton("SearchBy", "RegistrationNo")<text> RegistrationNo</text><br/>
+    @Html.TextBox("Search") <input type="submit" value="Search"/>
+}
+</p>
 <table class="table">
     <tr>
         <th>
