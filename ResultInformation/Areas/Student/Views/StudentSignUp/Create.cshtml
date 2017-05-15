@@ -80,7 +80,7 @@
             @Html.LabelFor(model => model.SemesterId, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
 
-                @Html.DropDownListFor(model => model.SemesterId, new SelectList(ViewBag.Semesters, "Id", "Name"), "  -----Select Semister-----  ")
+                @Html.DropDownListFor(model => model.SemesterId, new SelectList(ViewBag.Semesters, "Id", "Name"), "  -----Select Semester-----  ")
 
 
                 @Html.ValidationMessageFor(model => model.SemesterId)

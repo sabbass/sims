@@ -128,21 +128,23 @@
             @Html.LabelFor(model => model.SemesterId, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
 
-                @Html.DropDownListFor(model => model.SemesterId, new SelectList(ViewBag.Semesters, "Id", "Name", Model.SemesterId), "  -----Select Semister-----  ")
+                @Html.DropDownListFor(model => model.SemesterId, new SelectList(ViewBag.Semesters, "Id", "Name", Model.SemesterId), "  -----Select Semester-----  ")
 
 
                 @Html.ValidationMessageFor(model => model.SemesterId)
             </div>
         </div>
-        <div id="courses">
+        <div id="courses" src="/Student/StudentSignUp/Courses/">
 
         </div>
         <script>
+            console.log('test');
             var loadCourses = function () {
+                console.log('test1');
                 var sid = $('#SemesterId').val();
-                $("#courses").load("~/Student/StudentSignUp/Courses/" + sid);
+                $("#courses").load("/Student/StudentSignUp/Courses/" + sid);
             };
-            $(document).ready(loadCourses);
+            $( document ).ready(loadCourses);
             $('#SemesterId').on('change', loadCourses);
         </script>
         <div class="form-group">

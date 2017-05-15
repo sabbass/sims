@@ -59,26 +59,28 @@ namespace ResultInformation.Areas.Student.Controllers
 
             return View(mapper.ToUi(student));
         }
-        public ActionResult Courses(int SemesterId)
+        public ActionResult Courses(int Id)
         {
 
-            var semister = db.Semesters.FirstOrDefault(a => a.Id == SemesterId);
-            var model = semister.Courses.ToList().Select(a => new Models.Course() { Id = a.Id, Name = a.Name, Selected = false });
+            var semester = db.Semesters.FirstOrDefault(a => a.Id == Id);
+            var model = semester.Courses.ToList().Select((a) => { return new Models.Course() { Id = a.Id, Name = a.Name, Selected = false }; }).ToList();
 
             // if(semister!=null)
 
 
             var student = GetStudent();
-
-            var studentCourses = student.Registrations.Select(a => a.CourseId).ToList();
-            studentCourses.ForEach(a =>
+            if (student != null)
             {
-                var selected = model.FirstOrDefault(x => x.Id == a);
-                if (selected != null)
+                var studentCourses = student.Registrations.Select(a => a.CourseId).ToList();
+                studentCourses.ForEach(a =>
                 {
-                    selected.Selected = true;
-                }
-            });
+                    var selected = model.FirstOrDefault((x) =>{return x.Id == a;});
+                    if (selected != null)
+                    {
+                        selected.Selected = true;
+                    }
+                });
+            }
             return View(model);
         }
         //
@@ -107,6 +109,7 @@ namespace ResultInformation.Areas.Student.Controllers
                 dbmodel.UserId = User.Identity.GetUserId();
                 //  dbmodel.CreateDate = DateTime.Now;
                 db.Students.Add(dbmodel);
+
                 db.SaveChanges();
                 var userId = User.Identity.GetUserId(); ;
                 if (!User.IsInRole("Student"))
@@ -115,7 +118,7 @@ namespace ResultInformation.Areas.Student.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            catch (Exception ex)
+            catch
             {
                 return View();
             }
@@ -155,20 +158,24 @@ namespace ResultInformation.Areas.Student.Controllers
             try
             {
                 model.UserId = User.Identity.GetUserId();
-                var orignalInDb = GetStudent();
-                var d = mapper.Patch(model, orignalInDb);
-                db.Entry(orignalInDb).State = EntityState.Modified;
+                var student = GetStudent();
+                var d = mapper.Patch(model, student);
+                db.Entry(student).State = EntityState.Modified;
                 db.SaveChanges();
                 // TODO: Add update logic here
                 model.Courses.ForEach(a =>
                 {
-                    if (!db.Registrations.Any(x => x.CourseId == a && x.StudentId == orignalInDb.Id))
+                    if (!db.Registrations.Any(x => x.CourseId == a && x.StudentId == student.Id))
                     {
-                        db.Registrations.Add(new DAL.Registration() { SemesterId = orignalInDb.SemesterId, CourseId = a, StudentId = orignalInDb.Id });
+                        db.Registrations.Add(new DAL.Registration() { SemesterId = student.SemesterId, CourseId = a, StudentId = student.Id });
                     }
                 });
-           //     db.Registrations.RemoveRange()
+
+                //     db.Registrations.RemoveRange()
                 db.SaveChanges();
+
+                var rem = student.Registrations.Where(a => a.SemesterId == student.SemesterId && !model.Courses.Contains(a.Id));
+                db.Registrations.RemoveRange(rem);
 
                 return RedirectToAction("Index", "Home");
             }
