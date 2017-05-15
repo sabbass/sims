@@ -140,11 +140,28 @@
         <script>
             console.log('test');
             var loadCourses = function () {
+
                 console.log('test1');
                 var sid = $('#SemesterId').val();
                 $("#courses").load("/Student/StudentSignUp/Courses/" + sid);
             };
-            $( document ).ready(loadCourses);
+            var enableDisbleSemisters = function () {
+                var programName = $("#ProgramId").find(":selected").text();
+                $('#SemesterId').val('');
+               $('#SemesterId').find("option").each(function (i) {
+                   if (i > 0) {
+                       if ($(this).text().startsWith(programName)) {
+                           $(this).show();
+                       } else {
+                           $(this).hide();
+                       }
+                   } else {
+                       $(this).attr('selected', true)
+                   }
+               })
+            }
+            $(document).ready(function () { loadCourses(); enableDisbleSemisters(); });
+            $('#ProgramId').on('change', enableDisbleSemisters);
             $('#SemesterId').on('change', loadCourses);
         </script>
         <div class="form-group">
